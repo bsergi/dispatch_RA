@@ -1,0 +1,1325 @@
+Gen_Index,Name,Category,Capacity,Fuel_Cost
+1,General Foods 1 NUG,CC,16.1,30
+2,Kent CT 2,CT,44,50
+3,Kent CT 1,CC,44,30
+4,LGP NUG (Logan),ST,219,25
+8,PCLP1 NUG,CC,116,30
+9,Gilberton NUG,ST,79,25
+10,Harrisburg NUG,ST,11,25
+12,IUP NUG,DS,16,80
+13,Colver NUG,ST,110,25
+14,Grant Town,ST,80,25
+15,Gosport,ST,53.8,25
+16,West Kingsport 1,ST,45,25
+17,South River NUG,CC,260,30
+18,Mt Carmel Cogen (FosterWheeler),ST,43,25
+19,Cogentrix Hopewell 2 (James River),ST,46,25
+20,Cogentrix Hopewell 1 (James River),ST,46,25
+24,Edgecombe 2 (Rocky Mt),ST,58,25
+25,Edgecombe 1 (Rocky Mt),ST,58,25
+26,Camden County RR NUG,ST,23,25
+32,CPGP NUG (Chambers/Carneys PT),ST,217,25
+33,Ebensburg NUG,ST,50,25
+35,Baltimore Resco NUG (Bresco),ST,57,25
+36,Hopewell Cogen 1 (HCF),CC,400,30
+37,Cambria County NUG,ST,88,25
+38,Essex County RR NUG (Covanta),ST,65,25
+40,Warrior Run,ST,180,25
+42,Del Resource Mgmt Inc NUG,ST,75,25
+43,Camden COGEN,CC,159,30
+44,Hopewell Coal (Polyester),ST,63,25
+45,Altavista (Hall Branch),ST,63,25
+46,Southampton 1,ST,63,25
+47,Kenilworth NUG,CC,15,30
+48,Hazelton LM 200,CT,30,50
+49,Hazelton LM 400,CT,31,50
+50,Hazelton GT 100,CT,59,50
+51,Hazelton LM 300,CT,31,50
+52,Big Sandy 1,CT,56,50
+54,Big Sandy 4,CT,56,50
+55,Big Sandy (AEP) 1,ST,260,25
+56,Big Sandy 5,CT,56,50
+57,Big Sandy 3,CT,56,50
+58,Big Sandy 6,CT,56,50
+59,Big Sandy 2,CT,56,50
+60,Barkley 3,HD,32,5
+61,Barkley 2,HD,32,5
+62,Barkley 1,HD,32,5
+63,Barkley 4,HD,32,5
+64,Elmer Smith 1,ST,151,25
+65,Elmer Smith 2,ST,290,25
+66,Wolf Creek 6,HD,45,5
+67,Wolf Creek 5,HD,45,5
+68,Wolf Creek 4,HD,45,5
+69,Wolf Creek 1,HD,45,5
+70,Wolf Creek 2,HD,45,5
+71,Wolf Creek 3,HD,45,5
+72,Cooper 2,ST,225,25
+73,Cooper 1,ST,116,25
+78,Charles Crane CT 1,CT,14,50
+79,Charles Crane 1,ST,190,25
+80,Charles Crane 2,ST,195,25
+81,Gould St 3,ST,98,25
+82,Herbert Wagner 4,ST,400,25
+83,Herbert Wagner 2,ST,135,25
+84,Herbert Wagner 3,ST,319,25
+85,Herbert Wagner 1,ST,131,25
+86,Herbert Wagner CT 1,CT,14,50
+87,Notch Cliff 3,CT,16,50
+88,Notch Cliff 2,CT,16,50
+89,Notch Cliff 5,CT,16,50
+90,Notch Cliff 7,CT,16,50
+91,Notch Cliff 6,CT,16,50
+92,Notch Cliff 8,CT,16,50
+93,Notch Cliff 1,CT,16,50
+94,Notch Cliff 4,CT,16,50
+96,Perryman 51,CT,173,50
+97,Perryman 6,CT,120,50
+98,Perryman 1,CT,61,50
+99,Perryman 4,CT,61,50
+100,Perryman 3,CT,61,50
+101,Philadelphia Road 4,CT,16,50
+102,Philadelphia Road 1,CT,16,50
+103,Philadelphia Road 3,CT,16,50
+104,Philadelphia Road 2,CT,16,50
+105,Riverside 7,CT,22,50
+106,Riverside 1 (Zelda 1),CT,208,50
+107,Riverside 2 (Zelda 2),CT,208,50
+108,Riverside 8,CT,22,50
+110,Riverside 3 (Zelda 3),CT,208,50
+112,Westport 5,CT,121,50
+113,Crisfield 14,DS,10,80
+114,Vienna 10,CT,21,50
+115,Vienna 08,ST,156,25
+116,Deep Creek 2,HD,10,5
+117,Deep Creek 1,HD,10,5
+120,Chalk Point CT 1,CT,18,50
+121,Chalk Point SMECO CT,CT,93,50
+122,Chalk Point CT 2,CT,35,50
+123,Chalk Point CT 3,CT,99,50
+124,Chalk Point 2,ST,343,25
+125,Chalk Point 3,ST,612,25
+126,Chalk Point CT 6,CT,120,50
+127,Chalk Point CT 4,CT,99,50
+128,Chalk Point 4,ST,612,25
+129,Chalk Point 1,ST,341,25
+130,Chalk Point CT 5,CT,120,50
+131,Dickerson CT,CT,13,50
+132,Dickerson H CT 2,CT,167,50
+133,Dickerson 1,ST,182,25
+134,Dickerson 3,ST,182,25
+135,Dickerson H CT 1,CT,167,50
+136,Dickerson 2,ST,182,25
+137,Morgantown CT 5,CT,65,50
+138,Morgantown CT 4,CT,65,50
+139,Morgantown CT 6,CT,65,50
+140,Morgantown CT 3,CT,65,50
+141,Morgantown CT 2,CT,20,50
+142,Morgantown 2,ST,583,25
+143,Morgantown 1,ST,583,25
+144,Morgantown CT 1,CT,20,50
+145,Conowingo 10,HD,65,5
+146,Conowingo 01,HD,48,5
+147,Conowingo 11,HD,65,5
+148,Conowingo 09,HD,65,5
+149,Conowingo 07,HD,36,5
+150,Conowingo 04,HD,48,5
+151,Conowingo 05,HD,36,5
+152,Conowingo 06,HD,36,5
+153,Conowingo 02,HD,36,5
+154,Conowingo 08,HD,65,5
+155,Conowingo 03,HD,48,5
+156,Easton 12,DS,4.1,80
+157,Easton 11,DS,3.6,80
+158,Easton 07,DS,2,80
+159,Easton101,DS,1.5,80
+160,Easton 13,DS,5.6,80
+161,Easton 10,DS,3.5,80
+162,Easton102,DS,1.5,80
+163,Easton 14,DS,5.6,80
+164,Easton 08,DS,2,80
+165,Easton 09,DS,2.5,80
+166,Berr Sprg 12,HD,0.6,5
+167,Berr Sprg 09,HD,0.6,5
+168,Berr Sprg 01,HD,0.6,5
+169,Berr Sprg 02,HD,0.6,5
+170,Berr Sprg 05,HD,0.6,5
+171,Berr Sprg 07,HD,0.6,5
+172,Berr Sprg 04,HD,0.6,5
+173,Berr Sprg 10,HD,0.6,5
+174,Berr Sprg 11,HD,0.6,5
+175,Berr Sprg 08,HD,0.6,5
+176,Berr Sprg 06,HD,0.6,5
+177,Berr Sprg 03,HD,0.6,5
+178,Buchanan 10,HD,0.5,5
+179,Buchanan 01,HD,0.4,5
+180,Buchanan 06,HD,0.4,5
+181,Buchanan 05,HD,0.4,5
+182,Buchanan 04,HD,0.4,5
+183,Buchanan 08,HD,0.5,5
+184,Buchanan 09,HD,0.5,5
+185,Buchanan 07,HD,0.5,5
+186,Buchanan 03,HD,0.4,5
+187,Buchanan 02,HD,0.4,5
+188,Constantine 2,HD,0.3,5
+189,Constantine 1,HD,0.3,5
+190,Constantine 4,HD,0.3,5
+191,Constantine 3,HD,0.3,5
+192,Mottville 1,HD,1,5
+193,Mottville 4,HD,1,5
+194,Mottville 2,HD,1,5
+195,Mottville 3,HD,1,5
+196,Clinton 1,NU,1023,10
+200,England 2,ST,155,25
+204,Carll s Corner 1,CT,43,50
+205,Carll s Corner 2,CT,43,50
+225,Oyster Creek 1,NU,637,10
+226,Sayreville C4,CT,77,50
+227,Sayreville C3,CT,77,50
+229,Sayreville C1,CT,77,50
+230,Sayreville C2,CT,73,50
+232,Gilbert 6,CC,70,30
+236,Gilbert 7,CC,70,30
+237,Gilbert 5,CC,70,30
+240,Gilbert 4,CC,70,30
+242,Gilbert CT 9,CT,183,50
+243,Gilbert 8CC,CC,104,30
+249,Bergen 2CC,CC,596,30
+250,Bergen 1CC,CC,675,30
+254,Burlington 124,CT,42,50
+259,Burlington 123,CT,42,50
+262,Burlington 122,CT,42,50
+266,Burlington 121,CT,42,50
+285,Essex 9,CT,93,50
+297,Kearney 133,CT,44.5,50
+298,Kearney 132,CT,44.5,50
+299,Kearney 134,CT,44.5,50
+301,Kearney 142,CT,44.5,50
+303,Kearney 124,CT,44,50
+305,Kearney 131,CT,44.5,50
+308,Kearney 122,CT,44,50
+309,Kearney 121,CT,44,50
+310,Kearney 141,CT,44.5,50
+313,Kearney 123,CT,44,50
+316,Linden 1,CC,545,30
+317,Linden 2,CC,545,30
+320,Linden 8,CT,98,50
+325,Linden 7,CT,98,50
+326,Linden 6,CT,86,50
+327,Linden 5,CT,86,50
+335,Salem 1,NU,1174,10
+336,Salem 3,CT,46,50
+337,Salem 2,NU,1130,10
+338,Sewaren 1,ST,107,25
+339,Sewaren 2,ST,120,25
+341,Sewaren 3,ST,109,25
+342,Sewaren 4,ST,127,25
+343,Vineland CT 11,CT,62.9,50
+349,Gaston 4,HD,57,5
+350,Gaston 2,HD,56,5
+351,Gaston 1,HD,56,5
+352,Gaston 3,HD,56,5
+355,Roanoke Rapids 1,HD,26,5
+356,Roanoke Rapids 3,HD,25,5
+357,Roanoke Rapids 4,HD,23,5
+358,Roanoke Rapids 2,HD,25,5
+359,Buxton 3,DS,3,80
+360,Buxton 1,DS,3,80
+361,Buxton 2,DS,3,80
+362,Buxton 5,DS,3,80
+363,Buxton 4,DS,3,80
+364,Cardinal 1,ST,600,25
+365,Cardinal 3,ST,630,25
+366,Cardinal 2,ST,600,25
+377,Dicks Creek 5,CT,21,50
+378,Dicks Creek 4,CT,21,50
+379,Dicks Creek 3,CT,20,50
+380,Dicks Creek 1,CT,110,50
+382,Miami Fort GT 4,CT,20,50
+383,Miami Fort GT 3,CT,20,50
+384,Miami Fort 7,ST,500,25
+385,Miami Fort GT 5,CT,20,50
+386,Miami Fort 8,ST,500,25
+387,Miami Fort GT 6,CT,20,50
+390,Avon Lake 10,CT,29,50
+391,Avon Lake 9,ST,640,25
+393,Eastlake 6 CT,CT,31,50
+402,Conesville 6,ST,375,25
+403,Conesville 4,ST,780,25
+406,Conesville 5,ST,375,25
+408,Tait GT 2,CT,102,50
+409,Tait GT 3,CT,102,50
+410,Tait GT 1,CT,100,50
+411,Tait D 4,DS,2.5,80
+412,Tait D 1,DS,2.5,80
+413,Tait D 3,DS,2.5,80
+414,Tait D 2,DS,2.5,80
+415,Hutchings CT 7,CT,23,50
+423,Stuart 4,ST,585,25
+425,Stuart 2,ST,585,25
+426,Stuart D 2,DS,2.5,80
+428,Stuart D 1,DS,2.5,80
+430,Stuart 3,ST,585,25
+432,Stuart D 4,DS,2.5,80
+433,Stuart D 3,DS,2.5,80
+434,Monument D 3,DS,2.4,80
+435,Monument D 5,DS,2.4,80
+436,Monument D 2,DS,2.4,80
+437,Monument D 1,DS,2.4,80
+438,Monument D 4,DS,2.4,80
+439,Sidney D 3,DS,2.4,80
+440,Sidney D 2,DS,2.4,80
+441,Sidney D 4,DS,2.4,80
+442,Sidney D 1,DS,2.4,80
+443,Sidney D 5,DS,2.4,80
+444,Yankee GT 4,CT,18,50
+445,Yankee GT 7,CT,18,50
+446,Yankee GT 5,CT,18,50
+447,Yankee GT 2,CT,22,50
+448,Yankee GT 1,CT,22,50
+449,Yankee GT 6,CT,18,50
+450,Yankee GT 3,CT,22,50
+455,Niles CT A,CT,30,50
+465,Sammis B2,DS,3,80
+466,Sammis B3,DS,2,80
+467,Sammis 3,ST,180,25
+468,Sammis 6,ST,600,25
+469,Sammis 2,ST,180,25
+470,Sammis 1,ST,180,25
+471,Sammis A,DS,3,80
+472,Sammis 5,ST,300,25
+473,Sammis B1,DS,2,80
+474,Sammis 4,ST,180,25
+476,Sammis B4,DS,3,80
+477,Sammis 7,ST,600,25
+478,West Lorain 2,CT,90,50
+479,West Lorain A (Beaver),CT,64,50
+480,West Lorain 4,CT,90,50
+481,West Lorain B (Beaver),CT,64,50
+482,West Lorain 5,CT,90,50
+483,West Lorain 3,CT,90,50
+484,West Lorain 6,CT,90,50
+490,Kyger Creek 5,ST,205,25
+491,Kyger Creek 1,ST,205,25
+492,Kyger Creek 3,ST,205,25
+493,Kyger Creek 2,ST,205,25
+494,Kyger Creek 4,ST,205,25
+497,Bay Shore 1,ST,150,25
+498,Bay Shore CT,CT,18,50
+500,Richland 6,CT,135,50
+501,Richland 2,CT,15,50
+502,Richland 5,CT,135,50
+503,Richland 4,CT,135,50
+504,Richland 3,CT,18,50
+505,Richland 1,CT,15,50
+506,Stryker 1,CT,19,50
+507,Brunot Island 1A,CT,20,50
+510,Brunot Island 2B,CC,58,30
+511,Brunot Island 4,CC,147,30
+512,Brunot Island 2A,CC,58,30
+513,Brunot Island 3,CC,58,30
+514,Elrama 4,ST,175,25
+515,Elrama 1,ST,95,25
+516,Elrama 3,ST,105,25
+517,Elrama 2,ST,95,25
+518,Hamilton 1,CT,26,50
+519,Hunterstown 3,CT,27,50
+520,Hunterstown 2,CT,27,50
+521,Hunterstown 1,CT,27,50
+522,Mountain 2,CT,27,50
+523,Mountain 1,CT,27,50
+524,Orrtanna 1,CT,26,50
+525,Portland 4,CT,26,50
+526,Portland 1,ST,158,25
+527,Portland 2,ST,243,25
+528,Portland 3,CT,19,50
+529,Portland 5,CT,156,50
+530,Shawnee 1,CT,26,50
+531,Titus 5,CT,20,50
+535,Titus 4,CT,19,50
+536,Tolna 2,CT,27,50
+537,Tolna 1,CT,27,50
+538,York Haven Hydro,HD,19,5
+539,Conemaugh Diesel B,DS,3,80
+540,Conemaugh Diesel D,DS,3,80
+541,Conemaugh Diesel A,DS,3,80
+542,Conemaugh 2,ST,850,25
+543,Conemaugh Diesel C,DS,3,80
+544,Conemaugh 1,ST,850,25
+545,Blossburg CT,CT,26,50
+546,Homer City 3,ST,650,25
+548,Homer City 2,ST,614,25
+551,Homer City 1,ST,620,25
+552,Piney 2,HD,9,5
+553,Piney 1,HD,9,5
+554,Piney 3,HD,9,5
+556,Seward 1,ST,518,25
+558,Shawville 3,ST,180,25
+559,Shawville 7,DS,2,80
+560,Shawville 5,DS,2,80
+561,Shawville 1,ST,128,25
+562,Shawville 6,DS,2,80
+563,Shawville 4,ST,180,25
+564,Shawville 2,ST,130,25
+565,Warren CT,CT,79,50
+569,Keystone 2,ST,850,25
+570,Keystone Diesel 6,DS,3,80
+571,Keystone 1,ST,850,25
+572,Keystone Diesel 5,DS,3,80
+573,Keystone Diesel 3,DS,3,80
+574,Keystone Diesel 4,DS,3,80
+575,New Castle 5,ST,140,25
+576,New Castle 4,ST,92,25
+577,New Castle 3,ST,93,25
+578,New Castle EMD B,DS,3,80
+579,New Castle EMD A,DS,3,80
+580,Allentown 4,CT,18,50
+581,Allentown 2,CT,18,50
+582,Allentown 1,CT,18,50
+583,Allentown 3,CT,18,50
+586,Brunner Island 2,ST,390,25
+587,Brunner Island 3,ST,745,25
+589,Brunner Island 1,ST,334,25
+590,Fishbach 2,CT,18,50
+591,Fishbach 1,CT,18,50
+592,Harrisburg 1,CT,18,50
+594,Harrisburg 3,CT,18,50
+595,Harrisburg 2,CT,18,50
+596,Harwood 1,CT,18,50
+597,Harwood 2,CT,18,50
+598,Holtwood 01,HD,10,5
+599,Holtwood 03,HD,11,5
+600,Holtwood 13,HD,1.25,5
+601,Holtwood 02,HD,10,5
+602,Holtwood 05,HD,11,5
+603,Holtwood 11,HD,1.25,5
+604,Holtwood 04,HD,10,5
+605,Holtwood 08,HD,11,5
+606,Holtwood 09,HD,13,5
+607,Holtwood 06,HD,11,5
+609,Holtwood 18,HD,64.6,5
+610,Holtwood 10,HD,12,5
+611,Holtwood 19,HD,64.6,5
+612,Holtwood 07,HD,10,5
+613,Jenkins(Georgetown) 2,CT,18,50
+614,Jenkins(Georgetown) 1,CT,18,50
+615,Lockhaven 1,CT,18,50
+619,Martins Creek CTG 3,CT,24,50
+620,Martins Creek CTG 4,CT,24,50
+621,Martins Creek 4,ST,820,25
+622,Martins Creek CTG 2,CT,24,50
+623,Martins Creek CTG 1,CT,24,50
+625,Martins Creek 3,ST,850,25
+626,Montour 2,ST,755,25
+627,Montour 1,ST,757,25
+628,Montour ATG,ST,15,25
+629,Sunbury CTG 2,CT,24,50
+630,Sunbury Diesel 1,DS,3,80
+631,Sunbury Diesel 2,DS,3,80
+633,Sunbury CTG 1,CT,24,50
+638,Wallenpaupack 2,HD,22,5
+639,Wallenpaupack 1,HD,22,5
+640,West Shore 1,CT,18,50
+641,West Shore 2,CT,18,50
+642,Williamsport 1,CT,18,50
+643,Williamsport 2,CT,18,50
+644,Chester 9,CT,18,50
+645,Chester 8,CT,18,50
+646,Chester 7,CT,18,50
+650,Delaware 12,CT,18,50
+651,Delaware 11,CT,18,50
+654,Delaware 09,CT,20,50
+655,Delaware 10,CT,18,50
+657,Eddystone 10,CT,18,50
+658,Eddystone 30,CT,20,50
+659,Eddystone 20,CT,18,50
+660,Eddystone 04,ST,380,25
+661,Eddystone 40,CT,20,50
+662,Eddystone 03,ST,380,25
+665,Falls 2,CT,20,50
+666,Falls 1,CT,20,50
+667,Falls 3,CT,20,50
+668,Moser 2,CT,20,50
+669,Moser 3,CT,20,50
+670,Moser 1,CT,20,50
+671,Muddy Run 2,HD,133,5
+672,Muddy Run 3,HD,134,5
+673,Muddy Run 1,HD,134,5
+674,Muddy Run 4,HD,134,5
+675,Muddy Run 5,HD,134,5
+676,Muddy Run 7,HD,134,5
+677,Muddy Run 8,HD,134,5
+678,Muddy Run 6,HD,133,5
+679,Peach Bottom 3,NU,1112,10
+680,Peach Bottom 2,NU,1112,10
+681,Richmond 91,CT,66,50
+682,Richmond 92,CT,66,50
+683,Schuylkill 10,CT,18,50
+684,Schuylkill 11,CT,20,50
+687,Southwark 6,CT,18,50
+688,Southwark 3,CT,18,50
+689,Southwark 4,CT,18,50
+690,Southwark 5,CT,18,50
+691,Safe Harbor 08,HD,37,5
+692,Safe Harbor 05,HD,33,5
+693,Safe Harbor 10,HD,38,5
+694,Safe Harbor 09,HD,38,5
+695,Safe Harbor 07,HD,32,5
+696,Safe Harbor 01,HD,32,5
+697,Safe Harbor 11,HD,38,5
+698,Safe Harbor 06,HD,32,5
+699,Safe Harbor 12,HD,38,5
+700,Safe Harbor 04,HD,32,5
+701,Safe Harbor 02,HD,32,5
+702,Safe Harbor 03,HD,33,5
+704,Hunlock 3,CC,24,30
+705,Hunlock 5,CC,48,30
+706,Hunlock 6,CC,48,30
+712,Cordell Hull 3,HD,33,5
+713,Cordell Hull 1,HD,33,5
+714,Cordell Hull 2,HD,33,5
+715,Dale Hollow 3,HD,18,5
+716,Dale Hollow 2,HD,18,5
+717,Dale Hollow 1,HD,18,5
+718,Old Hickory 1,HD,25,5
+719,Old Hickory 2,HD,25,5
+720,Old Hickory 3,HD,25,5
+721,Old Hickory 4,HD,25,5
+722,J Percy Priest,HD,28,5
+723,Buck 1,HD,3,5
+724,Buck 3,HD,3,5
+725,Buck 2,HD,3,5
+726,Byllesby 1,HD,5.4,5
+727,Byllesby 3,HD,5.4,5
+728,Byllesby 2,HD,5.4,5
+729,Byllesby 4,HD,5.4,5
+730,Claytor 2,HD,18.8,5
+731,Claytor 3,HD,18.8,5
+732,Claytor 4,HD,18.8,5
+733,Claytor 1,HD,18.8,5
+734,Clinch River 2,ST,230,25
+735,Clinch River 1,ST,230,25
+739,Leesville 2,HD,25,5
+740,Leesville 1,HD,25,5
+741,Niagara 1,HD,2,5
+742,Niagara 2,HD,2,5
+743,Reusens Hydro,HD,12.5,5
+749,Smith Mtn 3,HD,105,5
+750,Smith Mtn 5,HD,66,5
+751,Smith Mtn 1,HD,66,5
+752,Smith Mtn 4,HD,174,5
+753,Smith Mtn 2,HD,174,5
+754,Bayview 16,DS,12,80
+755,Tasley 10,CT,33,50
+763,Chesterfield 6,ST,671,25
+764,Chesterfield 4,ST,171,25
+765,Chesterfield 3,ST,105,25
+766,Chesterfield 5,ST,317,25
+767,Chesterfield 7,CC,232,30
+768,Chesterfield 8,CC,235,30
+769,Cushaw 1,HD,2,5
+770,Low Moor GT 1,CT,12,50
+771,Low Moor GT 2,CT,12,50
+772,Low Moor GT 4,CT,12,50
+773,Low Moor GT 3,CT,12,50
+774,Northern Neck GT 2,CT,19,50
+775,Northern Neck GT 3,CT,19,50
+776,Northern Neck GT 1,CT,19,50
+777,Northern Neck GT 4,CT,19,50
+778,Chesapeake GT4,CT,18,50
+779,Chesapeake GT1,CT,19,50
+783,Chesapeake GT6,CT,18,50
+789,Chesapeake GT2,CT,18,50
+791,Possum Point GT 2,CT,16,50
+793,Possum Point GT 4,CT,16,50
+794,Possum Point GT 1,CT,16,50
+795,Possum Point 5,ST,786,25
+796,Possum Point GT 3,CT,16,50
+797,Possum Point 4,ST,221,25
+798,Possum Point 3,ST,105,25
+799,Possum Point GT 6,CT,16,50
+800,Possum Point GT 5,CT,16,50
+801,Possum Point 6,CC,610,30
+802,Surry 2,NU,815,10
+803,Surry 1,NU,810,10
+804,Yorktown 1,ST,163,25
+805,Yorktown 2,ST,172,25
+806,Yorktown 3,ST,820,25
+807,Kerr Dam 2,HD,37,5
+808,Kerr Dam 5,HD,37,5
+809,Kerr Dam 4,HD,37,5
+810,Kerr Dam 3,HD,37,5
+811,Kerr Dam 6,HD,37,5
+812,Kerr Dam 7,HD,37,5
+813,Kerr Dam 1,HD,14,5
+814,Philpott 1,HD,7,5
+815,Philpott 3,HD,1,5
+816,Philpott 2,HD,7,5
+817,Joliet 7,ST,518,25
+818,Joliet 8,ST,518,25
+819,Amos 1,ST,800,25
+820,Amos 3,ST,1300,25
+821,Amos 2,ST,800,25
+829,WVU/MEA,ST,50,25
+833,Fort Martin 2,ST,557,25
+834,Fort Martin 1,ST,552,25
+835,Harrison 2,ST,642,25
+836,Harrison 3,ST,651,25
+837,Harrison 1,ST,640,25
+848,Mitchell (AEP) 1,ST,800,25
+851,Mitchell (AEP) 2,ST,800,25
+852,Mount Storm 3,ST,536,25
+853,Mount Storm 2,ST,536,25
+854,Mount Storm GT 1,CT,16,50
+855,Mount Storm 1,ST,536,25
+856,Easton 21,DS,6.3,80
+857,Easton201,DS,1.5,80
+858,Easton 24,DS,6.3,80
+859,Easton202,DS,1.5,80
+860,Easton 23,DS,6.3,80
+861,Easton 204,CT,5.1,50
+862,Easton 22,DS,6.3,80
+863,Easton 203,CT,5.1,50
+864,Greenup 1,HD,23.4,5
+865,Greenup 2,HD,23.4,5
+866,Greenup 3,HD,23.4,5
+867,Glen Ferris 6 (Hawks Nest),HD,0.33,5
+868,Glen Ferris 2 (Hawks Nest),HD,0.33,5
+869,Glen Ferris 5 (Hawks Nest),HD,0.33,5
+870,Glen Ferris 1 (Hawks Nest),HD,0.33,5
+871,Glen Ferris 4 (Hawks Nest),HD,0.33,5
+872,Glen Ferris 3 (Hawks Nest),HD,0.33,5
+873,Glen Ferris 7 (Hawks Nest),HD,1.68,5
+874,Glen Ferris 8 (Hawks Nest),HD,1.68,5
+875,Hannibal Dam,HD,29,5
+876,NEPCO NUG,ST,52,25
+877,MH50 (Sunoil),CT,53,50
+879,York County RR NUG,ST,30,25
+880,Archbald,ST,19,25
+881,PEI 5,CT,4.6,50
+882,Archbald 2,CT,44,50
+883,PEI 6,CT,4.6,50
+885,Paxton Creek NUG,DS,12,80
+886,Newark Bay COGEN,CC,147,30
+887,Glatfelter NUG,ST,35,25
+888,Kimberly Clark,ST,55,25
+889,Bayonne COGEN NUG,CC,174,30
+890,Rosemary 1,CC,198,30
+891,Eagle Point COGEN NUG,CC,195,30
+894,Westwood 1,ST,30,25
+899,MCRRF1,ST,50,25
+900,Covanta Fairfax 1 (Ogden Martin),ST,63,25
+902,Panther Creek NUG,ST,80,25
+908,Parlin ST1,CC,23,30
+909,Parlin CT1,CC,39,30
+910,Parlin CT2,CC,39,30
+911,Parlin ST2,CC,23,30
+912,Cumberland CT 2,CT,90,50
+913,Cumberland CT 1,CT,96,50
+914,Marcal NUG,CC,47,30
+915,Lancaster County RR NUG,ST,30,25
+916,Wheelabrator-Frackville NUG,ST,43,25
+917,Gloucester NUG,ST,12,25
+918,Northampton,ST,110,25
+919,ALD 6,HD,8,5
+920,PE Hydro,HD,3,5
+921,ALD 5,HD,7,5
+922,Union County Resource Recovery,ST,39,25
+923,Bellmeade,CC,250,30
+924,Scrubgrass NUG,ST,85,25
+925,Mecklenburg 1 (Buggs Is),ST,69,25
+926,Mecklenburg 2 (Buggs Is),ST,69,25
+927,Doswell CC2 (4Rivers5),CC,363,30
+928,Doswell CC1 (4Rivers5),CC,363,30
+929,Doswell CT (4Rivers1),CT,182,50
+930,Yough Dam NUG,HD,5,5
+931,I95 LF Phase I,DS,3,80
+932,Great Falls Hydro NUG,HD,11,5
+935,Elizabeth River 2,CT,125,50
+936,Elizabeth River 1,CT,125,50
+938,Elizabeth River 3,CT,125,50
+939,Pittsylvania (Hurt),ST,80,25
+942,North Wales D 1,DS,2,80
+943,Conemaugh Hydro NUG,HD,8,5
+947,Smith CT 3,CT,142,50
+948,Smith CT 10,CT,107,50
+949,Smith CT 5,CT,98,50
+950,Smith CT 6,CT,98,50
+951,Smith CT 1,CT,142,50
+952,Smith CT 4,CT,98,50
+953,Smith CT 7,CT,98,50
+954,Smith CT 9,CT,107,50
+955,Smith CT 2,CT,142,50
+956,Rensselaer Cogen,CC,82.7,30
+960,Spruance 3 (Richmond),ST,47,25
+961,Spruance 1 (Richmond),ST,58,25
+962,Spruance 2 (Richmond),ST,58,25
+963,Spruance 4 (Richmond),ST,47,25
+966,Birchwood 1,ST,238,25
+968,Covanta Plymouth (Montenay),ST,28,25
+969,Schuylkill Energy NUG,ST,88,25
+970,Willamette (PennTech)(Domtar),ST,49,25
+971,Lakewood NUG,CC,262,30
+972,Cat Tractor NUG,CC,51,30
+973,I95 LF Phase II,DS,3,80
+974,Wheelabrator Falls NUG,ST,48,25
+976,Dinwiddie Diesel,DS,3,80
+977,Weakley Diesel,DS,7,80
+978,Grays Ferry Cogen,CC,150,30
+980,Panda,CC,230,30
+981,Gordonsville 1 (So.Anna),CC,144,30
+982,Gordonsville 2 (So.Anna),CC,144,30
+983,Santeetlah 2,HD,21,5
+984,Santeetlah 1,HD,21,5
+985,Cheoah 5,HD,33.6,5
+986,Cheoah 4,HD,27.5,5
+987,Cheoah 3,HD,27.5,5
+988,Cheoah 1,HD,27.5,5
+989,Cheoah 2,HD,27.5,5
+990,Calderwood 2,HD,52,5
+991,Calderwood 1,HD,52,5
+992,Calderwood 3,HD,52,5
+993,Chilhowee 1,HD,17,5
+994,Chilhowee 2,HD,17,5
+995,Chilhowee 3,HD,17,5
+996,Keystone NUG,DS,5,80
+997,Manchester,DS,5,80
+998,Ocean County LF,DS,9.6,80
+999,Lakeview,DS,5,80
+1005,Rocky Road CT 33,CT,30,50
+1006,Rocky Road CT 31,CT,110,50
+1007,Rocky Road CT 34,CT,110,50
+1008,Rocky Road CT 32,CT,110,50
+1009,Madison 1,CT,88,50
+1017,Kendall 2,CC,300,30
+1018,Kendall 4,CC,300,30
+1019,Kendall 3,CC,305,30
+1020,Kendall 1,CC,300,30
+1024,Bluegrass CT 2,CT,202,50
+1025,Bluegrass CT 3,CT,202,50
+1026,Bluegrass CT 1,CT,202,50
+1027,Nelson CT 2,CC,175.7,30
+1028,Nelson ST 2,CC,139,30
+1029,Nelson CT 1,CC,175.7,30
+1030,Nelson ST 1,CC,139,30
+1031,Cordova ST 1,CC,150,30
+1032,Cordova CT 2,CC,175,30
+1033,Cordova CT 1,CC,175,30
+1034,Ontelaunee ST 1,CC,138,30
+1035,Ontelaunee CT 2,CC,191,30
+1036,Ontelaunee CT 1,CC,191,30
+1037,Springdale 1 (AE1),CT,44,50
+1038,Springdale 2 (AE2),CT,44,50
+1039,Foothills 5 (Zelda 5),CT,208,50
+1040,Foothills 4 (Zelda 4),CT,208,50
+1041,Elwood 4,CT,154,50
+1042,Elwood 5,CT,190,50
+1043,Elwood 8,CT,190,50
+1044,Elwood 7,CT,190,50
+1045,Elwood 1,CT,154,50
+1046,Elwood 2,CT,155,50
+1047,Elwood 3,CT,154,50
+1048,Elwood 9,CT,155,50
+1049,Elwood 6,CT,190,50
+1052,Morris CT1 (Equistar),CC,38,30
+1053,Morris CT2 (Equistar),CC,38,30
+1054,Morris ST1 (Equistar),CC,62,30
+1055,Morris Cogen,DS,1.9,80
+1056,Morris CT3 (Equistar),CC,38,30
+1061,Greenville 1,CT,59,50
+1062,Greenville 2,CT,59,50
+1063,Greenville 3,CT,59,50
+1064,Greenville 4,CT,59,50
+1065,Liberty CT2,CC,152,30
+1067,Liberty CT1,CC,152,30
+1068,Liberty CC3,CC,217,30
+1069,Handsome Lake 2,CT,50,50
+1070,Handsome Lake 1,CT,50,50
+1071,Handsome Lake 3,CT,50,50
+1072,Handsome Lake 5,CT,50,50
+1073,Handsome Lake 4,CT,50,50
+1074,Lee County 8,CT,80,50
+1075,Lee County 7,CT,80,50
+1076,Lee County 5,CT,80,50
+1077,Lee County 1,CT,80,50
+1078,Lee County 6,CT,80,50
+1079,Lee County 2,CT,80,50
+1080,Lee County 3,CT,80,50
+1081,Lee County 4,CT,80,50
+1082,Rockford 1/11,CT,150,50
+1083,Rockford 1/12,CT,150,50
+1084,Red Oak Plant,CC,766,30
+1085,Darby 1,CT,94,50
+1086,Darby 5,CT,94,50
+1087,Darby 3,CT,94,50
+1088,Darby 6,CT,94,50
+1089,Darby 2,CT,94,50
+1090,Darby 4,CT,94,50
+1091,Tait GT 7,CT,94,50
+1092,Tait GT 4,CT,94,50
+1093,Tait GT 6,CT,94,50
+1094,Tait GT 5,CT,94,50
+1095,University Park 3 CT (South),CT,50,50
+1096,University Park 1 CT (South),CT,50,50
+1097,University Park 2 CT (South),CT,50,50
+1098,University Park 5 CT (South),CT,50,50
+1099,University Park 4 CT (South),CT,50,50
+1100,University Park 6 CT (South),CT,50,50
+1104,Crete CT 4,CT,75.2,50
+1105,Crete CT 2,CT,75.2,50
+1106,Crete CT 1,CT,75.2,50
+1107,Crete CT 3,CT,75.2,50
+1108,Ceredo 6,CT,91,50
+1109,Ceredo 4,CT,91,50
+1110,Ceredo 3,CT,91,50
+1111,Ceredo 2,CT,91,50
+1112,Ceredo 1,CT,90,50
+1113,Ceredo 5,CT,91,50
+1114,Aurora  6,CT,45,50
+1115,Aurora  8,CT,45,50
+1116,Aurora  3,CT,152,50
+1117,Aurora  7,CT,45,50
+1118,Aurora  9,CT,45,50
+1119,Aurora  4,CT,152,50
+1120,Aurora  5,CT,45,50
+1121,Aurora  2,CT,152,50
+1122,Aurora 10,CT,45,50
+1123,Aurora  1,CT,152,50
+1124,Southeast Chicago CT 12,CT,44,50
+1125,Southeast Chicago CT 10,CT,44,50
+1126,Southeast Chicago CT 5,CT,44,50
+1127,Southeast Chicago CT 8,CT,44,50
+1128,Southeast Chicago CT 11,CT,44,50
+1129,Southeast Chicago CT 9,CT,44,50
+1130,Southeast Chicago CT 7,CT,44,50
+1131,Southeast Chicago CT 6,CT,44,50
+1132,Wolf Hills 4,CT,56,50
+1133,Wolf Hills 5,CT,56,50
+1134,Wolf Hills 3,CT,56,50
+1135,Wolf Hills 1,CT,56,50
+1136,Wolf Hills 2,CT,56,50
+1141,River Energy CT 1 (Calumet),CT,200,50
+1142,River Energy CT 2 (Calumet),CT,200,50
+1143,New Covert 2,CC,390,30
+1144,New Covert 1,CC,390,30
+1145,New Covert 3,CC,390,30
+1146,Ford Mill Block 1,CC,624,30
+1147,Ford Mill Block 2,CC,630,30
+1148,Ironwood CT 2,CC,225,30
+1149,Ironwood CT 1,CC,225,30
+1151,Ironwood CC 3,CC,223,30
+1152,South Bend 1 (Armstrong),CT,147,50
+1153,South Bend 2 (Armstrong),CT,146,50
+1154,South Bend 3 (Armstrong),CT,149,50
+1155,South Bend 4 (Armstrong),CT,147,50
+1156,Troy 1,CT,150,50
+1157,Troy 2,CT,150,50
+1158,Troy 3,CT,150,50
+1159,Troy 4,CT,150,50
+1160,Oak Grove 1 (Pleasants),CT,155,50
+1161,Oak Grove 2 (Pleasants),CT,151,50
+1162,Dresden 1A,CC,148,30
+1163,Dresden 1S,CC,249,30
+1164,Dresden 1B,CC,148,30
+1165,Cottonwood CT 3,CC,165,30
+1166,Cottonwood CT 2,CC,150,30
+1167,Cottonwood ST 3,CC,150,30
+1168,Cottonwood CT 1,CC,150,30
+1169,Cottonwood ST 1,CC,165,30
+1170,Cottonwood ST 2,CC,165,30
+1171,Cottonwood ST 4,CC,150,30
+1172,Cottonwood CT 4,CC,165,30
+1176,Gans 8 (AE8),CT,44,50
+1177,Gans 9 (AE9),CT,44,50
+1190,ComChes 6,CT,45,50
+1191,ComChes 5,CT,45,50
+1192,ComChes 4,CT,45,50
+1193,ComChes 2,CT,45,50
+1194,ComChes 3,CT,45,50
+1195,ComChes 1,CT,45,50
+1196,ComChes 7,CT,45,50
+1200,Zion GT 3,CT,175,50
+1201,Zion GT 2,CT,175,50
+1202,Zion GT 1,CT,175,50
+1203,Washington 13,CC,600,30
+1204,Rolling Hills 1 (Flatlick),CT,195,50
+1205,Rolling Hills 2 (Flatlick),CT,195,50
+1206,Rolling Hills 5 (Flatlick),CT,195,50
+1207,Rolling Hills 4 (Flatlick),CT,195,50
+1208,Rolling Hills 3 (Flatlick),CT,195,50
+1213,Bayou Cove CT 2,CT,80,50
+1214,Bayou Cove CT 4,CT,80,50
+1215,Bayou Cove CT 3,CT,80,50
+1216,Elgin 3,CT,135,50
+1217,Elgin 2,CT,135,50
+1218,Elgin 1,CT,135,50
+1219,Elgin 4,CT,135,50
+1220,Fluvanna GT 32,CC,172.8,30
+1221,Fluvanna GT 22,CC,164.2,30
+1222,Fluvanna GS 12,CC,400.8,30
+1223,Fluvanna GT 12,CC,166.3,30
+1225,Lawrenceburg 2S,CC,255,30
+1226,Lawrenceburg 1B,CC,159,30
+1227,Lawrenceburg 2B,CC,159,30
+1228,Lawrenceburg 2A,CC,159,30
+1229,Lawrenceburg 1S,CC,255,30
+1230,Lawrenceburg 1A,CC,159,30
+1233,Waterford CT 1,CC,160,30
+1234,Waterford ST 1,CC,372,30
+1235,Waterford CT 3,CC,160,30
+1236,Waterford CT 2,CC,160,30
+1237,Ronco (Fayette),CC,620,30
+1238,York CT 2 (Delta),CC,125,30
+1239,York CT 1 (Delta),CC,125,30
+1240,York CT 3 (Delta),CC,125,30
+1241,York ST 4 (Delta),CC,195,30
+1246,UPark 6 (North),CT,38,50
+1247,UPark 4 (North),CT,38,50
+1248,UPark 10 (North),CT,38,50
+1249,UPark 11 (North),CT,38,50
+1250,UPark 7 (North),CT,38,50
+1251,UPark 2 (North),CT,38,50
+1252,UPark 9 (North),CT,38,50
+1253,UPark 1 (North),CT,38,50
+1254,UPark 8 (North),CT,38,50
+1255,UPark 3 (North),CT,38,50
+1256,UPark 12 (North),CT,38,50
+1257,UPark 5 (North),CT,44,50
+1258,Chambersburg 13 (Guilford AE13),CT,44,50
+1259,Chambersburg 12 (Guilford AE12),CT,7,50
+1260,B Chambersburg 13 (CCLP),DS,22,80
+1261,B Chambersburg 47 (CCLP),DS,202,80
+1262,Mt Bethel CC 3,CC,190,30
+1263,Mt Bethel CT 2,CC,190,30
+1264,Mt Bethel CT 1,CC,546,30
+1266,Bethlehem CT5,CC,122,30
+1267,Bethlehem CT7,CC,189,30
+1268,Bethlehem ST4,CC,122,30
+1269,Bethlehem CT3,CC,122,30
+1270,Bethlehem CT6,CC,122,30
+1271,Bethlehem CT2,CC,189,30
+1272,Bethlehem ST8,CC,546,30
+1274,Bethlehem CT1,CC,325,30
+1275,Fremont ST 3,CC,180,30
+1276,Fremont CT 2,CC,180,30
+1277,Fremont CT 1,CC,173,30
+1278,Choctaw 3 CT,CC,301,30
+1279,Choctaw 4 ST,CC,173,30
+1280,Choctaw 2 CT,CC,173,30
+1281,Choctaw 1 CT,CC,190,30
+1282,Springdale 5 (AE5),CC,180,30
+1283,Springdale 3 (AE3),CC,180,30
+1284,Springdale 4 (AE4),CC,620,30
+1285,Hanging Rock 1,CC,620,30
+1286,Hanging Rock 2,CC,43,30
+1287,Buchanan 1 (BuchanCO),CT,43,50
+1288,Buchanan 2 (BuchanCO),CT,3.6,50
+1293,Countryside LF,CT,237,50
+1294,MH 750 STM 1 (Phillips),CC,171,30
+1295,MH 750 CT 1 (Phillips),CC,171,30
+1296,MH 750 CT 3 (Phillips),CC,171,30
+1297,MH 750 CT 2 (Phillips),CC,800,30
+1298,Prairie State 1,ST,800,25
+1299,Prairie State 2,ST,0.7,25
+1300,Oaks LF 2,DS,1.3,80
+1301,Oaks LF 1,DS,147,80
+1302,Rockford 2/21,CT,149,50
+1303,Lakewood CT1,CT,148,50
+1304,Lakewood CT2,CT,1350,50
+1305,Warren County CC,CC,10,30
+1306,Warren County RR NUG,ST,1.9,25
+1309,Hunterstown CC 201,CC,315,30
+1310,Hunterstown CC 401,CC,165,30
+1311,Hunterstown CC 101,CC,165,30
+1312,Hunterstown CC 301,CC,56.6,30
+1313,Hamlet CT 6,CT,56.6,50
+1314,Hamlet CT 4,CT,56.6,50
+1315,Hamlet CT 2,CT,56.6,50
+1316,Hamlet CT 5,CT,56.6,50
+1317,Hamlet CT 1,CT,56.6,50
+1318,Hamlet CT 3,CT,172,50
+1319,Tosco (Linden CoGen),CT,2,50
+1321,Summersville 2,HD,40,5
+1322,Summersville 1,HD,44,5
+1323,Hunlock 4,CT,1.36,50
+1329,Southern LF 5,DS,4.1,80
+1330,Southern LF,DS,3,80
+1331,Central LF,DS,3,80
+1333,Greater Lebanon LF,DS,4.1,80
+1334,Bethel Energy,DS,4,80
+1335,Eastern LF,DS,5,80
+1336,Bethlehem LF,CT,700,50
+1337,Longview 1,ST,6,25
+1338,Newland Park LF,DS,11,80
+1339,Brunswick LF,DS,16,80
+1340,Charles City Landfill,DS,16,80
+1341,Chesterfield Landfill,DS,10,80
+1342,King and Queen LF,DS,14,80
+1343,Upton,DS,6,80
+1344,Pine Grove LF,DS,4,80
+1345,Rockville Diesel,DS,12,80
+1346,Virginia Beach Landfill,DS,1.6,80
+1351,Bear Garden,CC,585,30
+1352,Virginia City 1,ST,219,25
+1353,Waldorf CT 10 (St Charles),CC,332,30
+1354,Waldorf ST 10 (St Charles),CC,219,30
+1355,Waldorf CT 20 (St Charles),CC,61,30
+1356,Haverhill 1,ST,1.36,25
+1357,Ottawa County LF 1,DS,1.36,80
+1358,Ottawa County LF 2,DS,1.36,80
+1359,Ottawa County LF 3,DS,1.3,80
+1360,Carbon Limestone LF 16,DS,1.36,80
+1361,Carbon Limestone LF 7,DS,1.36,80
+1362,Carbon Limestone LF 5,DS,1.36,80
+1363,Carbon Limestone LF 1,DS,1.3,80
+1364,Carbon Limestone LF 15,DS,1.36,80
+1365,Carbon Limestone LF 9,DS,1.36,80
+1366,Carbon Limestone LF 6,DS,1.36,80
+1367,Carbon Limestone LF 10,DS,1.36,80
+1368,Carbon Limestone LF 4,DS,1.36,80
+1369,Carbon Limestone LF 3,DS,1.36,80
+1370,Carbon Limestone LF 8,DS,1.36,80
+1371,Carbon Limestone LF 12,DS,1.36,80
+1372,Carbon Limestone LF 13,DS,1.36,80
+1373,Carbon Limestone LF 14,DS,1.36,80
+1374,Carbon Limestone LF 2,DS,1.36,80
+1375,Carbon Limestone LF 11,DS,1.6,80
+1376,Lorain County LF 9,DS,1.6,80
+1377,Lorain County LF 7,DS,1.6,80
+1378,Lorain County LF 6,DS,1.6,80
+1379,Lorain County LF 8,DS,1.6,80
+1380,Lorain County LF 10,DS,1.6,80
+1381,Lorain County LF 4,DS,1.6,80
+1382,Lorain County LF 2,DS,1.6,80
+1383,Lorain County LF 1,DS,1.6,80
+1384,Lorain County LF 5,DS,1.6,80
+1385,Lorain County LF 3,DS,37.3,80
+1386,Meldahl 2,HD,37.4,5
+1387,Meldahl 3,HD,37.3,5
+1388,Meldahl 1,HD,4,5
+1389,Cumberland County LF,DS,5,80
+1390,Shippensburg LF (Community Refuse),DS,1,80
+1391,Northern Tier LF,DS,2,80
+1392,Stafford LF,DS,10.5,80
+1393,Broad Mountain 2 LF (Hegins),CT,5,50
+1394,Pioneer Crossing LF,DS,267,80
+1395,Crown Point ST 3,CC,225,30
+1396,Crown Point CT 2,CC,225,30
+1397,Crown Point CT 1,CC,4.4,30
+1398,Arden LF,DS,6,80
+1399,William Penn LF (Middle Peninsula),DS,10,80
+1400,King George LF,CT,187,50
+1401,Cleveland County CT 1,CT,3.2,50
+1402,Glendon LF,DS,1.6,80
+1403,Erie County LF 1,DS,191,80
+1404,Garrison CT1,CC,126,30
+1405,Garrison ST1,CC,4,30
+1406,Henrico County LF,DS,21.6,80
+1407,Willow Island 1,HD,21.6,5
+1408,Willow Island 2,HD,0.8,5
+1409,Geneva LF 2,DS,6,80
+1411,Geneva LF 5,DS,0.8,80
+1412,Geneva LF 4,DS,0.8,80
+1413,Geneva LF 3,DS,0.8,80
+1414,Geneva LF 1,DS,6,80
+1419,Mahoning LF 3,DS,0.8,80
+1420,Mahoning LF 4,DS,0.8,80
+1421,Mahoning LF 2,DS,0.8,80
+1422,Mahoning LF 1,DS,0.8,80
+1423,Mahoning LF 5,DS,4.5,80
+1424,Bellefontaine LF,DS,2,80
+1425,Reichs Ford LF,DS,47,80
+1426,Middletown Coke (Yankee 1 emkts),ST,232,25
+1427,Raritan River CT 1 (Woodbridge),CC,232,30
+1428,Raritan River CT 2 (Woodbridge),CC,319,30
+1429,Raritan River ST 1 (Woodbridge),CC,1.9,30
+1430,Salem County LF,DS,1.8,80
+1434,Sussex County LF,DS,1.4,80
+1440,Burlington County LF,DS,1.6,80
+1441,Northeast LF 4,DS,1.6,80
+1442,Northeast LF 3,DS,1.6,80
+1443,Northeast LF 1,DS,1.6,80
+1444,Northeast LF 2,DS,25,80
+1446,Newark CT 2 (Delancy St),CC,240,30
+1447,Newark ST 1 (Delancy St),CC,225,30
+1448,Newark CT 1 (Delancy St),CC,9.6,30
+1450,Edgeboro LF,DS,1.6,80
+1451,Clayville CT 1,CT,1.6,50
+1452,Millersville LF 2,DS,1376,80
+1453,Millersville LF 1,DS,425,80
+1454,Brunswick County CC,CC,425,30
+1455,Panda Liberty 10,CC,420,30
+1456,Panda Liberty 20,CC,420,30
+1457,Panda Patriot 10,CC,47.4,30
+1458,Panda Patriot 20,CC,2,30
+1460,NEP HCB 1,ST,19.9,25
+1461,Mahoning Creek 1,HD,19.9,5
+1462,Mahoning Creek 2,HD,226,5
+1463,Alpaca Diesel (Canton),DS,314,80
+1464,Milan Diesel,DS,226,80
+1465,Stonewall CT12,CC,25,30
+1466,Stonewall ST10,CC,25,30
+1467,Stonewall CT11,CC,1,30
+1468,Christiana 11,CT,1,50
+1469,Christiana 14,CT,1,50
+1470,Woodbine LF 2 (Cape May),DS,48,80
+1471,Woodbine LF 1 (Cape May),DS,60,80
+1472,Woodbine LF 3 (Cape May),DS,18,80
+1473,Delaware City 03,ST,90,25
+1474,Delaware City 06,CT,57,50
+1475,Delaware City 10,CT,86,50
+1476,Delaware City 07,CT,15,50
+1478,Edge Moor 03,ST,174,25
+1479,Edge Moor 10,CT,195,50
+1480,Edge Moor 05,ST,21,25
+1481,Edge Moor 04,ST,420,25
+1482,Cleveland County CT 4,CT,91,50
+1483,Indian River 10,CT,91,50
+1484,Indian River 04,ST,165,25
+1488,Berrien Springs LF 3,DS,12,80
+1489,Berrien Springs LF 1,DS,19,80
+1490,Berrien Springs LF 2,DS,5.7,80
+1492,West 1,CT,323.5,50
+1493,Laurel Highlands 2 LF (Glades Pike),DS,247.2,80
+1494,Oregon CTG12,CC,736,30
+1495,Oregon ST10,CC,1.6,30
+1496,Oregon CTG11,CC,1.6,30
+1497,Carroll County CC (CCE),CC,6,30
+1498,Orchard Hills LF 1,DS,102,80
+1499,Orchard Hills LF 2,DS,17,80
+1500,Cloyds Mountain LF,DS,17,80
+1501,Dover McKee Run 3,ST,1016,25
+1504,Cook 1,NU,639,10
+1505,Cook 2,NU,24,10
+1506,Pleasants 1,ST,24,25
+1507,Pleasants 2,ST,900,25
+1508,Racine 1,HD,880,5
+1509,Racine 2,HD,366,5
+1510,Calvert Cliffs 1,NU,600,10
+1511,Calvert Cliffs 2,NU,605,10
+1512,Duck Creek 1,ST,600,25
+1514,Newton 1,ST,645,25
+1515,East Bend 2,ST,652,25
+1516,Zimmer 1,ST,1330,25
+1517,Brandon Shores 2,ST,1196,25
+1518,Brandon Shores 1,ST,1227,25
+1519,Perry 1,NU,1136,10
+1520,Braidwood 2,NU,1164,10
+1521,Braidwood 1,NU,554,10
+1522,Byron 2,NU,554,10
+1523,Byron 1,NU,530,10
+1529,Lasalle 2,NU,275,10
+1530,Lasalle 1,NU,17,10
+1533,Killen GT 1,CT,20,50
+1534,Killen 2,ST,20,25
+1535,Catawba 1,NU,20,10
+1552,Beaver Valley 1,NU,300,10
+1553,Beaver Valley 2,NU,510,10
+1554,Spurlock 3,ST,268,25
+1555,Spurlock 1,ST,575,25
+1556,Spurlock 2,ST,580,25
+1557,Spurlock 4,ST,588,25
+1558,Big Cajun II 2,ST,785,25
+1559,Big Cajun II 1,ST,515,25
+1560,Big Cajun II 3,ST,910,25
+1561,Trimble 2,ST,910,25
+1562,Trimble 1,ST,910,25
+1563,Mansfield 3,ST,1140,25
+1564,Mansfield 2,ST,1149,25
+1565,Mansfield 1,ST,1134,25
+1566,Susquehanna 2,NU,1182,10
+1567,Susquehanna 1,NU,625,10
+1568,Limerick 2,NU,4.8,10
+1569,Limerick 1,NU,1073,10
+1570,Gibson 5,ST,950,25
+1571,Brown County LF,DS,1300,80
+1572,Hope Creek 1,NU,1300,10
+1573,Davis Besse 1,NU,500,10
+1574,Rockport 2,ST,160,25
+1575,Rockport 1,ST,160,25
+1576,Bath County 3,HD,420,5
+1579,Bath County 6,HD,499,5
+1580,Bath County 5,HD,420,5
+1582,Bath County 2,HD,160,5
+1583,Bath County 1,HD,420,5
+1586,Bath County 4,HD,917,5
+1588,North Anna 1,NU,1300,10
+1589,North Anna 2,NU,3,10
+1590,Laurel,HD,45,5
+1591,Mountaineer 1,ST,45,25
+1592,Ocracoke 1,DS,45,80
+1593,Center Hill 1,HD,12,5
+1594,Center Hill 3,HD,12,5
+1595,Center Hill 2,HD,12,5
+1596,Cheatham 3,HD,133,5
+1597,Cheatham 2,HD,400,5
+1598,Cheatham 1,HD,134,5
+1599,Yards Creek 3,HD,133,5
+1601,Yards Creek 1,HD,5,5
+1602,Yards Creek 2,HD,4,5
+1603,London 1,HD,4,5
+1604,London 2,HD,5,5
+1605,London 3,HD,5,5
+1606,Marmet 3,HD,5,5
+1607,Marmet 1,HD,5,5
+1608,Marmet 2,HD,5,5
+1609,Winfield 3,HD,13,5
+1610,Winfield 2,HD,13,5
+1611,Winfield 1,HD,13,5
+1612,Lake Lynn 3,HD,13,5
+1613,Lake Lynn 2,HD,32,5
+1614,Lake Lynn 1,HD,92,5
+1615,Lake Lynn 4,HD,92,5
+1616,Vineland Jet 1,CT,92,50
+1617,Gravel Neck 3,CT,28,50
+1618,Gravel Neck 4,CT,17,50
+1619,Gravel Neck 5,CT,92,50
+1620,Gravel Neck 2,CT,12,50
+1621,Gravel Neck 1,CT,44,50
+1622,Gravel Neck 6,CT,42,50
+1623,Raystown,HD,121,5
+1624,Forked River C1,CT,177,50
+1625,Forked River C2,CT,120,50
+1626,Hay Road CT6,CC,120,30
+1627,Hay Road ST8,CC,545,30
+1628,Hay Road CT3,CC,120,30
+1629,Hay Road CT1,CC,541,30
+1631,Hay Road CT2,CC,121,30
+1633,Hay Road CT7,CC,94,30
+1634,Hay Road CT5,CC,94,30
+1635,Hay Road ST4,CC,94,30
+1636,Woodsdale GT 3,CT,94,50
+1637,Woodsdale GT 4,CT,94,50
+1638,Woodsdale GT 6,CT,94,50
+1639,Woodsdale GT 2,CT,92,50
+1640,Woodsdale GT 1,CT,92,50
+1641,Woodsdale GT 5,CT,92,50
+1642,Darbytown 4,CT,92,50
+1643,Darbytown 2,CT,441,50
+1644,Darbytown 1,CT,441,50
+1645,Darbytown 3,CT,72,50
+1646,Clover 2,ST,72,25
+1647,Clover 1,ST,72,25
+1648,Lincoln 2,CT,72,50
+1649,Lincoln 1,CT,72,50
+1650,Lincoln 8,CT,72,50
+1651,Lincoln 7,CT,72,50
+1652,Lincoln 3,CT,72,50
+1653,Lincoln 4,CT,47,50
+1654,Lincoln 5,CT,47,50
+1655,Lincoln 6,CT,47,50
+1660,Sherman Avenue CT 1,CT,38,50
+1661,Dover Parkland 11,CT,38,50
+1662,Richmond CT 2,CT,84,50
+1663,Richmond CT 1,CT,38,50
+1664,Anderson CT 2,CT,77,50
+1665,Anderson CT 3,CT,21,50
+1666,Anderson CT 1,CT,21,50
+1668,Bellville 1,HD,3,5
+1669,Bellville 2,HD,30,5
+1670,Pennsbury 1,CT,30,50
+1671,Pennsbury 2,CT,44,50
+1672,Fairless Hills B,ST,44,25
+1673,Fairless Hills A,ST,44,25
+1674,Tilton CT 2,CT,44,50
+1675,Tilton CT 1,CT,43,50
+1676,Tilton CT 4,CT,43,50
+1677,Tilton CT 3,CT,43,50
+1684,Montpelier 3,CT,48,50
+1685,Montpelier 1,CT,182,50
+1686,Montpelier 4,CT,160,50
+1687,Montpelier 2,CT,160,50
+1691,Rowan CT 2,CT,158,50
+1693,Rowan 4 CC,CC,155,30
+1694,Rock Springs CT1,CT,159,50
+1695,Rock Springs CT4,CT,156,50
+1696,Rock Springs CT3,CT,156,50
+1697,Rock Springs CT2,CT,156,50
+1698,Marsh Run CT 2,CT,156,50
+1699,Marsh Run CT 3,CT,76,50
+1700,Marsh Run CT 1,CT,75,50
+1701,Louisa CT 5,CT,76,50
+1702,Louisa CT 2,CT,75,50
+1703,Louisa CT 3,CT,178,50
+1704,Louisa CT 4,CT,178,50
+1705,Louisa CT 1,CT,178,50
+1706,Remington 3,CT,178,50
+1707,Remington 2,CT,178,50
+1708,Remington 1,CT,178,50
+1709,Remington 4,CT,151,50
+1710,Ladysmith GT 2,CT,151,50
+1711,Ladysmith GT 1,CT,160.6,50
+1712,Ladysmith GT 3,CT,170,50
+1713,Ladysmith GT 4,CT,170,50
+1714,Ladysmith GT 5,CT,170,50
+1715,Mone 1,CT,16,50
+1716,Mone 3,CT,51,50
+1717,Mone 2,CT,49,50
+1718,Amelia Landfill,DS,90,80
+1719,Clayton 2,CT,90,50
+1720,Clayton 1 (Beasley),CT,90,50
+1725,Mickleton CT 1,CT,60,50
+1726,Three Mile Island 1,NU,60,10
+1727,Croydon 11,CT,65,50
+1728,Croydon 21,CT,65,50
+1729,Croydon 32,CT,65,50
+1730,Croydon 12,CT,65,50
+1731,Croydon 22,CT,59,50
+1732,Croydon 31,CT,43,50
+1733,Croydon 41,CT,43,50
+1734,Croydon 42,CT,1300,50
+1737,Gavin 1,ST,30,25
+1738,Gavin 2,ST,195,25
+1739,Seneca 1,HD,588,5
+1740,Seneca 3,HD,26,5
+1741,Seneca 2,HD,26,5
+1742,Cheswick 1,ST,26,25
+1751,E.D. Edwards 3,ST,15,25
+1753,E.D. Edwards 2,ST,340,25
+1756,Coffeen 1,ST,250,25
+1757,Coffeen 2,ST,78,25
+1776,Dresden 3,NU,63,10
+1777,Dresden 2,NU,62,10
+1782,Joliet 6,ST,554,25
+1784,Kincaid 1,ST,34,25
+1785,Kincaid 2,ST,769,25
+1788,Powerton 6,ST,867,25
+1789,Powerton 5,ST,32,25
+1790,Quad Cities 1,NU,17,10
+1791,Quad Cities 2,NU,34,10
+1796,Waukegan 7,ST,53,25
+1797,Waukegan 32,CT,361,50
+1799,Waukegan 31,CT,151,50
+1800,Waukegan 8,ST,251,25
+1801,Will County 4,ST,148,25
+1803,Will County 3,ST,49.1,25
+1805,Fisk 34,CT,55,50
+1806,Fisk 33,CT,55,50
+1808,Fisk 32,CT,167,50
+1809,Fisk 31,CT,167,50
+1810,Joppa 6,ST,167,25
+1811,Joppa 5,ST,167,25
+1812,Joppa 3,ST,167,25
+1813,Joppa 2,ST,238,25
+1814,Joppa 4,ST,448,25
+1815,Joppa 1,ST,225,25
+1818,Hennepin 2,ST,3,25
+1819,Hennepin 1,ST,2,25
+1828,Clifty Creek 6,ST,205,25
+1829,Clifty Creek 4,ST,205,25
+1830,Clifty Creek 3,ST,205,25
+1831,Clifty Creek 5,ST,1,25
+1832,Clifty Creek 1,ST,1,25
+1833,Clifty Creek 2,ST,1.4,25
+1834,Elkhart 3,HD,140,5
+1835,Elkhart 2,HD,140,5
+1836,Elkhart 1,HD,200,5
+1841,Twinbrnch 5,HD,1,5
+1842,Twinbrnch 2,HD,1,5
+1843,Twinbrnch 4,HD,1,5
+1844,Twinbrnch 1,HD,1,5
+1845,Twinbrnch 8,HD,1,5
+1846,Twinbrnch 6,HD,0,5
+1847,Twinbrnch 7,HD,0,5
+1848,Twinbrnch 3,HD,0,5
+1849,Demand Response,DR,10000,1000
