@@ -76,7 +76,7 @@ def solve(instance):
     print ("Solving...")
     
     # to keep human-readable files for debugging, set keepfiles = True
-    solution = solver.solve(instance, tee=True)
+    solution = solver.solve(instance, tee=True, keepfiles=False)
 
     return solution
 
@@ -105,12 +105,18 @@ def run_scenario(directory_structure):
     #so OK to do this
     results_dispatch = []
     tmps = []
+    results_wind = []
+    results_solar = []
+    results_curtailment = []
     for t in instance.TIMEPOINTS:
+        results_wind.append(instance.windgen[t].value)
+        results_solar.append(instance.solargen[t].value)
+        results_curtailment.append(instance.curtailment[t].value)
         tmps.append(instance.TIMEPOINTS[t])
         for g in instance.GENERATORS:
             results_dispatch.append(instance.dispatch[t,g].value)
     
-    return (results_dispatch, len(tmps))
+    return (results_dispatch, len(tmps), results_wind, results_solar, results_curtailment)
 
 #run model
 code_directory = cwd
@@ -140,11 +146,16 @@ plt.plot([],[],color='b', label='Hydro', linewidth=5)
 plt.plot([],[],color='m', label='Nuclear', linewidth=5)
 plt.plot([],[],color='k', label='Coal', linewidth=5)
 plt.plot([],[],color='orange', label='Gas CC', linewidth=5)
-plt.plot([],[],color='r', label='Gas CT', linewidth=5)
+plt.plot([],[],color='sienna', label='Gas CT', linewidth=5)
 plt.plot([],[],color='g', label='Oil', linewidth=5)
-plt.plot([],[],color='c', label='Demand Response', linewidth=5)
+plt.plot([],[],color='silver', label='Demand Response', linewidth=5)
+plt.plot([],[],color='cyan', label='Wind', linewidth=5)
+plt.plot([],[],color='yellow', label='Solar', linewidth=5)
+plt.plot([],[],color='red', label='Curtailment', linewidth=5)
 
-plt.stackplot(x,y[4],y[5],y[2],y[0],y[1],y[3],y[6], colors=['b','m','k','orange','r','g','c'])
+plt.stackplot(x,y[4],y[5],y[2],y[0],y[1],y[3],y[6],
+              np.asarray(scenario_results[2]),np.asarray(scenario_results[3]),np.asarray(scenario_results[4]),
+              colors=['b','m','k','orange','sienna','g','silver','cyan','yellow','red'])
 plt.ylabel('Load (MW)')
 plt.xlabel('Hour')
 plt.legend(loc=4)

@@ -26,7 +26,11 @@ def scenario_inputs(inputs_directory):
     
     data.load(filename=os.path.join(inputs_directory, "timepoints.csv"),
               index=model_script.dispatch_model.TIMEPOINTS,
-              param=(model_script.dispatch_model.grossload)
+              param=(model_script.dispatch_model.grossload,
+                     model_script.dispatch_model.windcap,
+                     model_script.dispatch_model.windcf,
+                     model_script.dispatch_model.solarcap,
+                     model_script.dispatch_model.solarcf)
               )
     
     data.load(filename=os.path.join(inputs_directory, "PJM_generators.csv"),
