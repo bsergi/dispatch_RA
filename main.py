@@ -80,6 +80,12 @@ def solve(instance):
 
     return solution
 
+def load_solution(instance, results):
+    """
+    Load results.
+    """
+    instance.solutions.load_from(results)
+
 def run_scenario(directory_structure):
     """
     Run a scenario.
@@ -92,31 +98,50 @@ def run_scenario(directory_structure):
     # Create problem instance
     instance = create_problem_instance(scenario_inputs_directory)
     
+    # Create a 'dual' suffix component on the instance, so the solver plugin will know which suffixes to collect
+    #instance.dual = Suffix(direction=Suffix.IMPORT)
+    
     # Solve
     solution = solve(instance)
 
-    print ("Done running scenario, printing solution...")
+    print ("Done running MIP, relaxing to LP to obtain duals...")
+    
+    instance.commitment.fix() #fix binary variables to relax to LP
+    instance.startup.fix() 
+    instance.shutdown.fix()
+    instance.preprocess()   
+    instance.dual = Suffix(direction=Suffix.IMPORT) 
+    solution = solve(instance)   #solve LP and print dual
     
     #load up the instance that was just solved
-    instance.solutions.load_from(solution)
+    load_solution(instance, solution)
+    #instance.solutions.load_from(solution)
     #write it to an array
     #eventually this should be converted to real results writing, 
     #but for not it's just a single result
     #so OK to do this
     results_dispatch = []
+    results_starts = []
+    results_shuts = []
     tmps = []
     results_wind = []
     results_solar = []
     results_curtailment = []
+    price_duals = []
+
     for t in instance.TIMEPOINTS:
         results_wind.append(instance.windgen[t].value)
         results_solar.append(instance.solargen[t].value)
         results_curtailment.append(instance.curtailment[t].value)
         tmps.append(instance.TIMEPOINTS[t])
+        price_duals.append(instance.dual[instance.LoadConstraint[t]])
+
         for g in instance.GENERATORS:
             results_dispatch.append(instance.dispatch[t,g].value)
+            results_starts.append(instance.startup[t,g].value)
+            results_shuts.append(instance.shutdown[t,g].value)
     
-    return (results_dispatch, len(tmps), results_wind, results_solar, results_curtailment)
+    return (results_dispatch, len(tmps), results_wind, results_solar, results_curtailment, results_starts, results_shuts, price_duals)
 
 #run model
 code_directory = cwd
@@ -128,15 +153,20 @@ scenario_results = run_scenario(dir_str)
             
 #plot some basic results with matplotlib
 scenario_results_np = np.reshape(scenario_results[0], (int(scenario_results[1]), int(len(scenario_results[0])/scenario_results[1])))
+start_results_np = np.reshape(scenario_results[5], (int(scenario_results[1]), int(len(scenario_results[5])/scenario_results[1])))
+shut_results_np = np.reshape(scenario_results[6], (int(scenario_results[1]), int(len(scenario_results[6])/scenario_results[1])))
 gens = pd.read_csv(join(dir_str.INPUTS_DIRECTORY, 'PJM_generators_full.csv'))
 
 gens_list = []
 y = []
+start = []
+shut = []
 
 for g in gens['Category'].unique():
     gen_type = (gens['Category']==g)
     y.append(np.dot(scenario_results_np,np.array(gen_type)))
-
+    start.append(np.dot(start_results_np,np.array(gen_type)))
+    shut.append(np.dot(shut_results_np,np.array(gen_type)))
 # Your x and y axis
 x=range(1,int(scenario_results[1])+1)
 #y is made above
@@ -159,6 +189,27 @@ plt.stackplot(x,y[4],y[5],y[2],y[0],y[1],y[3],y[6],
 plt.ylabel('Load (MW)')
 plt.xlabel('Hour')
 plt.legend(loc=4)
+plt.show()
+
+#do also for starts
+plt.plot([],[],color='b', label='Hydro', linewidth=5)
+plt.plot([],[],color='m', label='Nuclear', linewidth=5)
+plt.plot([],[],color='k', label='Coal', linewidth=5)
+plt.plot([],[],color='orange', label='Gas CC', linewidth=5)
+plt.plot([],[],color='sienna', label='Gas CT', linewidth=5)
+plt.plot([],[],color='g', label='Oil', linewidth=5)
+
+plt.stackplot(x,start[4],start[5],start[2],start[0],start[1],start[3],
+              colors=['b','m','k','orange','sienna','g'])
+plt.ylabel('StartUps (# Plants)')
+plt.xlabel('Hour')
+plt.legend()
+plt.show()
+
+#and finally, plot the prices
+plt.plot(x, np.asarray(scenario_results[7]), color='r')
+plt.ylabel('Price ($/MWh)')
+plt.xlabel('Hour')
 plt.show()
 
 end_time = time.time() - start_time

@@ -36,7 +36,9 @@ def scenario_inputs(inputs_directory):
     data.load(filename=os.path.join(inputs_directory, "PJM_generators.csv"),
               index=model_script.dispatch_model.GENERATORS,
               param=(model_script.dispatch_model.capacity,
-                     model_script.dispatch_model.fuelcost)
+                     model_script.dispatch_model.fuelcost,
+                     model_script.dispatch_model.pmin,
+                     model_script.dispatch_model.startcost)
               )
     
     

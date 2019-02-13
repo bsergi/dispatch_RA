@@ -49,6 +49,8 @@ dispatch_model.solarcf = Param(dispatch_model.TIMEPOINTS, within=NonNegativeReal
 #generator-dependent params
 dispatch_model.capacity = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 dispatch_model.fuelcost = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
+dispatch_model.pmin = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
+dispatch_model.startcost = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 
 ###########################
 # ######## VARS ######### #
@@ -66,6 +68,16 @@ dispatch_model.solargen = Var(dispatch_model.TIMEPOINTS,
 dispatch_model.curtailment = Var(dispatch_model.TIMEPOINTS,
                                  within = NonNegativeReals, initialize=0)
 
+#the following vars will make problem integer
+dispatch_model.commitment = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
+                                within=Binary, initialize=0)
+
+dispatch_model.startup = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
+                                within=Binary, initialize=0)
+
+dispatch_model.shutdown = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
+                                within=Binary, initialize=0)
+
 ###########################
 # ##### CONSTRAINTS ##### #
 ###########################
@@ -80,7 +92,7 @@ def SolarRule(model, t):
     return (model.solarcap[t]*model.solarcf[t] >= model.solargen[t])
 dispatch_model.SolarMaxConstraint = Constraint(dispatch_model.TIMEPOINTS, rule=SolarRule)
 
-#this probably won't get used, but let's put it in for now
+#curtailment probably won't get used, but let's put it in for now
 def CurtailmentRule(model, t):
     return (model.curtailment[t] == (model.windcap[t]*model.windcf[t]-model.windgen[t]) + (model.solarcap[t]*model.solarcf[t]-model.solargen[t]))
 dispatch_model.CurtailmentConstraint = Constraint(dispatch_model.TIMEPOINTS, rule=CurtailmentRule)
@@ -92,15 +104,45 @@ dispatch_model.LoadConstraint = Constraint(dispatch_model.TIMEPOINTS, rule=LoadR
 
 #gen capacity
 def CapacityMaxRule(model, t, g):
-    return (model.capacity[g] >= model.dispatch[t,g])
+    return (model.capacity[g]*model.commitment[t,g] >= model.dispatch[t,g])
 dispatch_model.CapacityMaxConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=CapacityMaxRule)
+
+#pmin
+def PminRule(model,t,g):
+    return (model.dispatch[t,g] >= model.capacity[g]*model.commitment[t,g]*model.pmin[g])
+dispatch_model.PminConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=PminRule)
+
+#startups
+def StartUpRule(model,t,g):
+    if t==1:
+        return Constraint.Skip
+    else:
+        return (1-model.commitment[t-1,g] >= model.startup[t,g])
+dispatch_model.StartUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=StartUpRule)
+
+#shutdowns
+def ShutDownRule(model,t,g):
+    if t==1:
+        return Constraint.Skip
+    else:
+        return (model.commitment[t-1,g] >= model.shutdown[t,g])
+dispatch_model.ShutDownConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=ShutDownRule)
+
+#assign shuts and starts
+def AssignStartShutRule(model,t,g):
+    if t==1:
+        return Constraint.Skip
+    else:
+        return (model.commitment[t,g] - model.commitment[t-1,g] == model.startup[t,g] - model.shutdown[t,g])
+dispatch_model.AssignStartShutConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=AssignStartShutRule)
 
 ###########################
 # ###### OBJECTIVE ###### #
 ###########################
 
 def objective_rule(model): 
-    return(sum(sum(model.dispatch[t,g] for t in model.TIMEPOINTS)*model.fuelcost[g] for g in model.GENERATORS)) #min dispatch cost for objective
+    return(sum(sum(model.dispatch[t,g] for t in model.TIMEPOINTS)*model.fuelcost[g] for g in model.GENERATORS) +\
+           sum(sum(model.startup[t,g] for t in model.TIMEPOINTS)*model.startcost[g] for g in model.GENERATORS)) #min dispatch cost for objective
     
 dispatch_model.TotalCost = Objective(rule=objective_rule, sense=minimize)
 
