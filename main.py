@@ -14,6 +14,9 @@ import pandas as pd
 import numpy as np
 import math
 import time
+import sys
+import datetime
+from pyutilib.services import TempfileManager
 from pyomo.environ import *
 from pyomo.opt import SolverFactory
 import matplotlib.pyplot as plt
@@ -30,6 +33,7 @@ start_time = time.time()
 cwd = os.getcwd()
 scenario_name = "TEST" #for now
 
+#Directory structure, using existing files rather than creating case structure for now
 class DirStructure(object):
     """
     Create directory and file structure.
@@ -39,10 +43,35 @@ class DirStructure(object):
         #self.DIRECTORY = os.path.join(self.CODE_DIRECTORY, "..")
         self.INPUTS_DIRECTORY = os.path.join(self.DIRECTORY, "inputs")
         self.RESULTS_DIRECTORY = os.path.join(self.DIRECTORY, "results")
+        self.LOGS_DIRECTORY = os.path.join(self.DIRECTORY, "logs")
 
     def make_directories(self):
         if not os.path.exists(self.RESULTS_DIRECTORY):
             os.mkdir(self.RESULTS_DIRECTORY)
+        if not os.path.exists(self.LOGS_DIRECTORY):
+            os.mkdir(self.LOGS_DIRECTORY)
+            
+# Logging
+class Logger(object):
+    """
+    The print statement will call the write() method of any object you assign to sys.stdout,
+    so assign the terminal (stdout) and a log file as output destinations.
+    """
+    def __init__(self, directory_structure):
+        self.terminal = sys.stdout
+        self.log_file_path = os.path.join(directory_structure.LOGS_DIRECTORY,
+                                          datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') + "_" +
+                                          str(scenario_name) + ".log")
+        self.log_file = open(self.log_file_path, "w", buffering=1)
+
+    def write(self, message):
+        self.terminal.write(message)
+        self.log_file.write(message)
+
+    def flush(self):
+        self.terminal.flush()
+        self.log_file.flush()
+
             
 def create_problem_instance(scenario_inputs_directory):
     """
@@ -76,8 +105,18 @@ def solve(instance):
     print ("Solving...")
     
     # to keep human-readable files for debugging, set keepfiles = True
-    solution = solver.solve(instance, tee=True, keepfiles=False)
-
+    try:
+        solution = solver.solve(instance, tee=True, keepfiles=False)
+    except PermissionError:
+        print("Yuck, a permission error")
+        for file in glob.glob("*.log"):
+            print("removing log files due to Permission Error")
+            file_path = open(file)
+            file_path.close()
+            time.sleep(1)
+            os.remove(file)
+        return solve(instance)
+    
     return solution
 
 def load_solution(instance, results):
@@ -93,7 +132,11 @@ def run_scenario(directory_structure):
 
     # Directories
     scenario_inputs_directory = os.path.join(directory_structure.INPUTS_DIRECTORY)
-    #scenario_results_directory = os.path.join(directory_structure.RESULTS_DIRECTORY)
+    #scenario_results_directory = os.path.join(directory_structure.RESULTS_DIRECTORY) #results not needed yet
+    scenario_logs_directory = os.path.join(directory_structure.LOGS_DIRECTORY)
+
+    # Write logs to this directory
+    TempfileManager.tempdir = scenario_logs_directory
 
     # Create problem instance
     instance = create_problem_instance(scenario_inputs_directory)
@@ -147,9 +190,15 @@ def run_scenario(directory_structure):
 code_directory = cwd
 dir_str = DirStructure(code_directory)
 dir_str.make_directories()
+logger = Logger(dir_str)
+log_file = logger.log_file_path
 print ("Running scenario " + str(scenario_name) + "...")
+stdout = sys.stdout
+sys.stdout = logger
 
 scenario_results = run_scenario(dir_str)
+
+sys.stdout = stdout #return to original
             
 #plot some basic results with matplotlib
 scenario_results_np = np.reshape(scenario_results[0], (int(scenario_results[1]), int(len(scenario_results[0])/scenario_results[1])))
