@@ -31,7 +31,7 @@ explain purpose and use of model here
 
 start_time = time.time()
 cwd = os.getcwd()
-scenario_name = "TEST" #for now
+scenario_name = "TOY" #for now
 
 #Directory structure, using existing files rather than creating case structure for now
 class DirStructure(object):
@@ -41,8 +41,8 @@ class DirStructure(object):
     def __init__(self, code_directory):
         self.DIRECTORY = code_directory
         #self.DIRECTORY = os.path.join(self.CODE_DIRECTORY, "..")
-        self.INPUTS_DIRECTORY = os.path.join(self.DIRECTORY, "inputs")
-        self.RESULTS_DIRECTORY = os.path.join(self.DIRECTORY, "results")
+        self.INPUTS_DIRECTORY = os.path.join(self.DIRECTORY, scenario_name, "inputs")
+        self.RESULTS_DIRECTORY = os.path.join(self.DIRECTORY, scenario_name, "results")
         self.LOGS_DIRECTORY = os.path.join(self.DIRECTORY, "logs")
 
     def make_directories(self):
@@ -171,6 +171,8 @@ def run_scenario(directory_structure):
     results_solar = []
     results_curtailment = []
     price_duals = []
+    reserve_duals = []
+    results_spinreserves = []
 
     for t in instance.TIMEPOINTS:
         results_wind.append(instance.windgen[t].value)
@@ -178,13 +180,15 @@ def run_scenario(directory_structure):
         results_curtailment.append(instance.curtailment[t].value)
         tmps.append(instance.TIMEPOINTS[t])
         price_duals.append(instance.dual[instance.LoadConstraint[t]])
+        reserve_duals.append(instance.dual[instance.TotalSpinUpReserveConstraint[t]])
 
         for g in instance.GENERATORS:
             results_dispatch.append(instance.dispatch[t,g].value)
             results_starts.append(instance.startup[t,g].value)
             results_shuts.append(instance.shutdown[t,g].value)
+            results_spinreserves.append(instance.spinreserves[t,g].value)
     
-    return (results_dispatch, len(tmps), results_wind, results_solar, results_curtailment, results_starts, results_shuts, price_duals)
+    return (results_dispatch, len(tmps), results_wind, results_solar, results_curtailment, results_starts, results_shuts, price_duals, reserve_duals, results_spinreserves)
 
 #run model
 code_directory = cwd
@@ -204,18 +208,22 @@ sys.stdout = stdout #return to original
 scenario_results_np = np.reshape(scenario_results[0], (int(scenario_results[1]), int(len(scenario_results[0])/scenario_results[1])))
 start_results_np = np.reshape(scenario_results[5], (int(scenario_results[1]), int(len(scenario_results[5])/scenario_results[1])))
 shut_results_np = np.reshape(scenario_results[6], (int(scenario_results[1]), int(len(scenario_results[6])/scenario_results[1])))
+spin_results_np = np.reshape(scenario_results[9], (int(scenario_results[1]), int(len(scenario_results[9])/scenario_results[1])))
 gens = pd.read_csv(join(dir_str.INPUTS_DIRECTORY, 'PJM_generators_full.csv'))
 
 gens_list = []
 y = []
 start = []
 shut = []
+spinreserves = []
 
 for g in gens['Category'].unique():
+    print(g)
     gen_type = (gens['Category']==g)
     y.append(np.dot(scenario_results_np,np.array(gen_type)))
     start.append(np.dot(start_results_np,np.array(gen_type)))
     shut.append(np.dot(shut_results_np,np.array(gen_type)))
+    spinreserves.append(np.dot(spin_results_np,np.array(gen_type)))
 # Your x and y axis
 x=range(1,int(scenario_results[1])+1)
 #y is made above
@@ -255,9 +263,30 @@ plt.xlabel('Hour')
 plt.legend()
 plt.show()
 
-#and finally, plot the prices
+#and for the held spin reserves by generator type
+plt.plot([],[],color='b', label='Hydro', linewidth=5)
+plt.plot([],[],color='m', label='Nuclear', linewidth=5)
+plt.plot([],[],color='k', label='Coal', linewidth=5)
+plt.plot([],[],color='orange', label='Gas CC', linewidth=5)
+plt.plot([],[],color='sienna', label='Gas CT', linewidth=5)
+plt.plot([],[],color='g', label='Oil', linewidth=5)
+
+plt.stackplot(x,spinreserves[4],spinreserves[5],spinreserves[2],spinreserves[0],spinreserves[1],spinreserves[3],
+              colors=['b','m','k','orange','sienna','g'])
+plt.ylabel('Held Spin Reserves (MW)')
+plt.xlabel('Hour')
+plt.legend()
+plt.show()
+
+
+#and finally, plot the energy LMP dual and then the reserve dual
 plt.plot(x, np.asarray(scenario_results[7]), color='r')
-plt.ylabel('Price ($/MWh)')
+plt.ylabel('Energy Price ($/MWh)')
+plt.xlabel('Hour')
+plt.show()
+
+plt.plot(x, np.asarray(scenario_results[8]), color='black')
+plt.ylabel('Reserve Price ($/MW)')
 plt.xlabel('Hour')
 plt.show()
 

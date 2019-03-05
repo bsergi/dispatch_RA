@@ -38,10 +38,16 @@ def scenario_inputs(inputs_directory):
               param=(model_script.dispatch_model.capacity,
                      model_script.dispatch_model.fuelcost,
                      model_script.dispatch_model.pmin,
-                     model_script.dispatch_model.startcost)
+                     model_script.dispatch_model.startcost,
+                     model_script.dispatch_model.canspin)
               )
-    
-    
+
+    data.load(filename=os.path.join(inputs_directory, "operating_reserve_segments.csv"),
+              index=model_script.dispatch_model.SEGMENTS,
+              param=(model_script.dispatch_model.segmentMW,
+                     model_script.dispatch_model.segmentprice)
+              )          
+        
     return data
 
 end_time = time.time() - start_time

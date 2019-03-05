@@ -1,0 +1,43 @@
+Gen_Index,Name,Category,Capacity,Fuel_Cost,Can_Spin
+1,General Foods 1 NUG,CC,16.1,30,1
+2,Kent CT 2,CT,44,50,1
+3,Kent CT 1,CC,44,30,1
+4,LGP NUG (Logan),ST,219,25,1
+8,PCLP1 NUG,CC,116,30,1
+9,Gilberton NUG,ST,79,25,1
+10,Harrisburg NUG,ST,11,25,1
+12,IUP NUG,DS,16,80,1
+13,Colver NUG,ST,110,25,1
+14,Grant Town,ST,80,25,1
+15,Gosport,ST,53.8,25,1
+16,West Kingsport 1,ST,45,25,1
+17,South River NUG,CC,260,30,1
+1574,Rockport 2,ST,160,25,1
+1575,Rockport 1,ST,160,25,1
+1576,Bath County 3,HD,420,5,1
+1579,Bath County 6,HD,499,5,1
+1580,Bath County 5,HD,420,5,1
+1582,Bath County 2,HD,160,5,1
+1583,Bath County 1,HD,420,5,1
+1586,Bath County 4,HD,917,5,1
+1566,Susquehanna 2,NU,1182,10,0
+1567,Susquehanna 1,NU,625,10,0
+1616,Vineland Jet 1,CT,92,50,1
+1617,Gravel Neck 3,CT,28,50,1
+1618,Gravel Neck 4,CT,17,50,1
+1619,Gravel Neck 5,CT,92,50,1
+1620,Gravel Neck 2,CT,12,50,1
+1621,Gravel Neck 1,CT,44,50,1
+1622,Gravel Neck 6,CT,42,50,1
+1623,Raystown,HD,121,5,1
+1624,Forked River C1,CT,177,50,1
+1625,Forked River C2,CT,120,50,1
+1626,Hay Road CT6,CC,120,30,1
+1627,Hay Road ST8,CC,545,30,1
+1628,Hay Road CT3,CC,120,30,1
+1629,Hay Road CT1,CC,541,30,1
+1631,Hay Road CT2,CC,121,30,1
+1633,Hay Road CT7,CC,94,30,1
+1634,Hay Road CT5,CC,94,30,1
+1635,Hay Road ST4,CC,94,30,1
+1849,Demand Response,DR,10000,1000,0
