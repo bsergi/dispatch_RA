@@ -1,0 +1,6 @@
+zone,wind_cap,solar_cap
+EAST,0,400
+WEST,8368,400
+DC_BGE_PEP,0,400
+VA_DOM,0,400
+PA_METED_PPL,0,400
