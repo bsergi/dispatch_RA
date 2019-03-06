@@ -41,6 +41,10 @@ def scenario_inputs(inputs_directory):
                      model_script.dispatch_model.canspin)
               )
 
+    data.load(filename=os.path.join(inputs_directory, "PJM_generators_scheduled_outage.csv"),
+              param=(model_script.dispatch_model.scheduledavailable)
+              )
+    
     data.load(filename=os.path.join(inputs_directory, "PJM_generators_zone.csv"),
               param=(model_script.dispatch_model.capacity)
               )

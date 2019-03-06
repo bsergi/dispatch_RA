@@ -67,6 +67,9 @@ dispatch_model.pmin = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 dispatch_model.startcost = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 dispatch_model.canspin = Param(dispatch_model.GENERATORS, within=Binary)
 
+#time and zone-dependent params
+dispatch_model.scheduledavailable = Param(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, within=Binary)
+
 #generator and zone-dependent params
 dispatch_model.capacity = Param(dispatch_model.GENERATORS, dispatch_model.ZONES, within=NonNegativeReals)
 
@@ -221,6 +224,14 @@ def AssignStartShutRule(model,t,g):
     else:
         return (model.commitment[t,g] - model.commitment[t-1,g] == model.startup[t,g] - model.shutdown[t,g])
 dispatch_model.AssignStartShutConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=AssignStartShutRule)
+
+#force de-comitted generator if unit unavailable due to scheduled outage
+def ScheduledAvailableRule(model,t,g):
+    if model.scheduledavailable[t,g]==0:
+        return (model.scheduledavailable[t,g] == model.commitment[t,g])
+    else:
+        return Constraint.Skip
+dispatch_model.ScheduledAvailableConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=ScheduledAvailableRule)
 
 ## HOLD SUFFICIENT RESERVES ##
 
