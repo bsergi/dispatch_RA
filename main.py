@@ -24,6 +24,7 @@ import matplotlib.pyplot as plt
 #import other scripts
 import input_data
 import model_script
+import write_results
 
 '''
 explain purpose and use of model here
@@ -31,7 +32,7 @@ explain purpose and use of model here
 
 start_time = time.time()
 cwd = os.getcwd()
-scenario_name = "FULL" #for now
+scenario_name = "TOY" #for now
 
 #Directory structure, using existing files rather than creating case structure for now
 class DirStructure(object):
@@ -132,7 +133,7 @@ def run_scenario(directory_structure):
 
     # Directories
     scenario_inputs_directory = os.path.join(directory_structure.INPUTS_DIRECTORY)
-    #scenario_results_directory = os.path.join(directory_structure.RESULTS_DIRECTORY) #results not needed yet
+    scenario_results_directory = os.path.join(directory_structure.RESULTS_DIRECTORY) #results not needed yet
     scenario_logs_directory = os.path.join(directory_structure.LOGS_DIRECTORY)
 
     # Write logs to this directory
@@ -156,6 +157,9 @@ def run_scenario(directory_structure):
     instance.dual = Suffix(direction=Suffix.IMPORT) 
     solution = solve(instance)   #solve LP and print dual
     
+    #write_results.export_results(instance, solution, scenario_results_directory, debug_mode=1)
+    
+    # THE REST OF THIS LOOP IS ONLY NEEDED FOR PLOTTING RESULTS
     #load up the instance that was just solved
     load_solution(instance, solution)
     #instance.solutions.load_from(solution)
@@ -208,6 +212,7 @@ def run_scenario(directory_structure):
             results_shuts, price_duals, reserve_duals, results_spinreserves, len(zone_stamp),\
             transmission_duals,results_transmission_line_flow)
 
+#THIS SHOULD BE KEPT
 #run model
 code_directory = cwd
 dir_str = DirStructure(code_directory)
@@ -221,7 +226,9 @@ sys.stdout = logger
 scenario_results = run_scenario(dir_str)
 
 sys.stdout = stdout #return to original
-            
+#END WHAT SHOULD BE KEPT
+
+#PLOTS ONLY
 #plot some basic results with matplotlib
 scenario_results_np = np.reshape(scenario_results[0], (int(scenario_results[1]), int(len(scenario_results[0])/scenario_results[1])))
 start_results_np = np.reshape(scenario_results[5], (int(scenario_results[1]), int(len(scenario_results[5])/scenario_results[1])))

@@ -67,11 +67,14 @@ dispatch_model.pmin = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 dispatch_model.startcost = Param(dispatch_model.GENERATORS, within=NonNegativeReals)
 dispatch_model.canspin = Param(dispatch_model.GENERATORS, within=Binary)
 
+
 #time and zone-dependent params
 dispatch_model.scheduledavailable = Param(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, within=Binary)
 
 #generator and zone-dependent params
 dispatch_model.capacity = Param(dispatch_model.GENERATORS, dispatch_model.ZONES, within=NonNegativeReals)
+dispatch_model.ramp = Param(dispatch_model.GENERATORS, dispatch_model.ZONES, within=NonNegativeReals)
+dispatch_model.rampstartuplimit = Param(dispatch_model.GENERATORS, dispatch_model.ZONES, within=NonNegativeReals)
 
 #reserve segment-dependent params
 dispatch_model.segmentMW = Param(dispatch_model.SEGMENTS, within=NonNegativeReals)
@@ -199,7 +202,16 @@ def PminRule(model,t,g,z):
     return (model.dispatch[t,g,z] >= model.capacity[g,z]*model.commitment[t,g]*model.pmin[g])
 dispatch_model.PminConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, dispatch_model.ZONES, rule=PminRule)
 
-## STARTUP/SHUTDOWN ##
+## GENERATOR RAMP ##
+
+def GeneratorRampUpRule(model,t,g,z):
+    if t==1:
+        return Constraint.Skip
+    else:
+        return (model.dispatch[t-1,g,z] + model.ramp[g,z]*model.commitment[t-1,g] + model.startup[t,g]*model.rampstartuplimit[g,z]  >= model.dispatch[t,g,z])
+dispatch_model.GeneratorRampUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, dispatch_model.ZONES, rule=GeneratorRampUpRule)
+
+## GENERATOR STARTUP/SHUTDOWN ##
 
 #startups
 def StartUpRule(model,t,g):

@@ -46,7 +46,9 @@ def scenario_inputs(inputs_directory):
               )
     
     data.load(filename=os.path.join(inputs_directory, "PJM_generators_zone.csv"),
-              param=(model_script.dispatch_model.capacity)
+              param=(model_script.dispatch_model.capacity,
+                     model_script.dispatch_model.ramp,
+                     model_script.dispatch_model.rampstartuplimit)
               )
 
     data.load(filename=os.path.join(inputs_directory, "operating_reserve_segments.csv"),
