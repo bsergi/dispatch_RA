@@ -32,7 +32,7 @@ explain purpose and use of model here
 
 start_time = time.time()
 cwd = os.getcwd()
-scenario_name = "TOY" #for now
+scenario_name = "TEST2" #for now
 
 #Directory structure, using existing files rather than creating case structure for now
 class DirStructure(object):
@@ -157,7 +157,7 @@ def run_scenario(directory_structure):
     instance.dual = Suffix(direction=Suffix.IMPORT) 
     solution = solve(instance)   #solve LP and print dual
     
-    #write_results.export_results(instance, solution, scenario_results_directory, debug_mode=1)
+    write_results.export_results(instance, solution, scenario_results_directory, debug_mode=1)
     
     # THE REST OF THIS LOOP IS ONLY NEEDED FOR PLOTTING RESULTS
     #load up the instance that was just solved

@@ -41,7 +41,6 @@ def scenario_inputs(inputs_directory):
                      model_script.dispatch_model.canspin,
                      model_script.dispatch_model.minup,
                      model_script.dispatch_model.mindown)
-                     model_script.dispatch_model.canspin)
               )
 
     data.load(filename=os.path.join(inputs_directory, "PJM_generators_scheduled_outage.csv"),
@@ -52,8 +51,8 @@ def scenario_inputs(inputs_directory):
               param=(model_script.dispatch_model.capacity,
                      model_script.dispatch_model.ramp,
                      model_script.dispatch_model.rampstartuplimit,
-                     model_script.dispatch_model.rampshutdownlimit) ##new attribute!
-                     model_script.dispatch_model.rampstartuplimit)
+                     model_script.dispatch_model.rampshutdownlimit)
+              )
 
     data.load(filename=os.path.join(inputs_directory, "operating_reserve_segments.csv"),
               index=model_script.dispatch_model.SEGMENTS,

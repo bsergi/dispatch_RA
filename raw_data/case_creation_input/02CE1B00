@@ -1,0 +1,10 @@
+base inputs,value
+Begin Date,1/2/2014
+Duration,2
+Wind forecast error,1%
+Solar forecast error,1%
+Load forecast error,1%
+Zones,TRUE
+Demand Curve Segments,10
+VOLL,"$3,500 "
+Contingency Reserve Shed,$850 
