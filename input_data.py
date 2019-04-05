@@ -79,12 +79,16 @@ def scenario_inputs(inputs_directory):
 
     data.load(filename=os.path.join(inputs_directory, "transmission_lines.csv"),
               index=model_script.dispatch_model.TRANSMISSION_LINE,
+              param=(model_script.dispatch_model.old)
+              )
+    
+    data.load(filename=os.path.join(inputs_directory, "transmission_lines_hourly.csv"),
               param=(model_script.dispatch_model.transmission_from,
                      model_script.dispatch_model.transmission_to,
                      model_script.dispatch_model.transmission_from_capacity,
                      model_script.dispatch_model.transmission_to_capacity,
                      model_script.dispatch_model.line_losses_frac)
-              )   
+              )
               
     return data
 

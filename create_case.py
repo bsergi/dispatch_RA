@@ -74,7 +74,7 @@ def create_zonal_timepoints(zone_df, zone_list, load_df, wind_shape, solar_shape
     })
     
     return df
-
+'''
 def create_lines(lines, zone_list):
     line_names = []
     from_zone = []
@@ -106,6 +106,80 @@ def create_lines(lines, zone_list):
             count_l+=1
         count_z+=1
     df = pd.DataFrame({'transmission_line': line_names,
+     'transmission_from': from_zone,
+     'transmission_to': to_zone,
+     'min_flow': min_flow,
+     'max_flow': max_flow,
+     'line_losses_frac': losses_frac
+    })
+
+    return df
+
+'''
+
+def create_lines(lines, zone_list):
+    line_names = []
+    old = []
+    count_z = 0
+    for z in zone_list:
+        count_l = 0
+        for l in zone_list:
+            if len(lines[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)]) == 1:
+                index_val = lines[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)].index[0]
+                from_str = str(lines.tx_from_zone[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                to_str = str(lines.tx_to_zone[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                line_names.append((str(from_str)+"_to_"+str(to_str)))
+                old.append(0.1)
+            elif count_l > count_z:
+                line_names.append(z+"_to_"+l)
+                old.append(0)
+            count_l+=1
+        count_z+=1
+    df = pd.DataFrame({'transmission_line': line_names,
+     'old': old
+    })
+
+    return df
+
+def create_hourly_lines(lines, zone_list, load_df_for_timepoints):
+    time_index = []
+    line_names = []
+    from_zone = []
+    to_zone = []
+    min_flow = []
+    max_flow = []
+    losses_frac = []
+    count_z = 0
+    #print(lines.columns)
+    for z in zone_list:
+        count_l = 0
+        for l in zone_list:
+            if len(lines[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)]) >= 1:
+                #print(lines[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)])
+                for t in range(1,load_df_for_timepoints.shape[0]+1):
+                    time_index.append(t)
+                    index_val = lines[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)].index[t-1]
+                    from_str = str(lines.tx_from_zone[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                    to_str = str(lines.tx_to_zone[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                    line_names.append((str(from_str)+"_to_"+str(to_str)))
+                    from_zone.append(from_str)
+                    to_zone.append(to_str)
+                    min_flow.append((-1.)*lines.limit_mw[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                    max_flow.append(lines.limit_mw[(lines.tx_from_zone==z) & (lines.tx_to_zone==l)][index_val])
+                    losses_frac.append(.02)
+            elif count_l > count_z:
+                for t in range(1,load_df_for_timepoints.shape[0]+1):
+                    time_index.append(t)
+                    line_names.append(z+"_to_"+l)
+                    from_zone.append(z)
+                    to_zone.append(l)
+                    min_flow.append(0)
+                    max_flow.append(0)
+                    losses_frac.append(.02)
+            count_l+=1
+        count_z+=1
+    df = pd.DataFrame({'timepoint': time_index,
+    'transmission_line': line_names,
      'transmission_from': from_zone,
      'transmission_to': to_zone,
      'min_flow': min_flow,
@@ -290,6 +364,11 @@ def write_data(data, results_directory):
         input_lines = pd.read_csv(os.path.join(dir_str.SCENARIO_INPUTS_DIRECTORY,"transmission_lines_inputs.csv"))
         line_df = create_lines(input_lines, zone_list)
         line_df.to_csv(os.path.join(results_directory,"transmission_lines.csv"), index=False)
+        
+        #create alternate transmission lines csv
+        hourly_lines = pd.merge(data[8], input_lines, on='interface_limit_name')
+        hourly_line_output = create_hourly_lines(hourly_lines, zone_list, loadMW)
+        hourly_line_output.to_csv(os.path.join(results_directory,"transmission_lines_hourly.csv"), index=False)
         
     print('...results written')
     return None

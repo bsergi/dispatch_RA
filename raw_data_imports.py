@@ -46,11 +46,18 @@ def load_data(inputs_directory, scenario_inputs_directory):
     units = pd.read_csv(os.path.join(inputs_directory,"PJM.units.processed.071818.csv"))
     units_zonal_match = pd.read_csv(os.path.join(inputs_directory,"GENERATORS_LL.csv"))
     
+    #load line flow data
+    line_limits = pd.read_csv(os.path.join(inputs_directory,"da_interface_flows_and_limits_full.csv"))
+    
     print('end loading data, begin cleaning data...')
+    
     
     #create cleaning dates
     startdate = parser.parse(base_inputs.loc['Begin Date']['value'])
     enddate = startdate + timedelta(days=int(base_inputs.loc['Duration']['value']), hours=-1)
+    
+    #clean line flow limits
+    clean_line_limits = line_clean(line_limits, startdate, enddate)
     
     #clean wind and solar data
     wind = vre_time_clean("wind", wind_solar, startdate, enddate)
@@ -93,7 +100,7 @@ def load_data(inputs_directory, scenario_inputs_directory):
     loadMW = loads_time_clean(loads, startdate, enddate)
     
     print('...return loaded and cleaned data')
-    return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1])
+    return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1], clean_line_limits)
 
 def str_to_datetime(my_str):
     '''
@@ -108,6 +115,13 @@ def generator_module(units, zones):
     unit_zone = pd.merge(units, zones, on='X', how='outer')
     return unit_zone
 
+def line_clean(lines, startdate, enddate):
+    '''
+    takes df of lines, subsets and outputs the active timeperiod
+    '''
+    line_output = lines[(lines.datetime_beginning_ept.apply(str_to_datetime) >= startdate) & (enddate >= lines.datetime_beginning_ept.apply(str_to_datetime))]
+    return line_output
+    
 def gens_time_clean(gens, startdate, enddate):
     '''
     takes df of generators, subsets those that were active during the entire timeperiod of dispatch

@@ -1,2 +1,2 @@
-transmission_line,transmission_from,transmission_to,min_flow,max_flow,line_losses_frac
-SOUTH_to_NORTH,SOUTH,NORTH,-500,500,0.02
+transmission_line,old
+SOUTH_to_NORTH,0.02

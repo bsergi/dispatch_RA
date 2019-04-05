@@ -336,7 +336,7 @@ plt.show()
 tx_palette = ['b','m','k','orange','sienna','g','silver','cyan','yellow','red']
 tx_label = []
 for line in range(len(line_names['transmission_line'])):
-    if line_names['max_flow'][line] != 0:
+    if line_names['old'][line] != 0:
         plt.plot(x, transmission_flow_np[:,line], color=tx_palette[line])
         tx_label.append(line_names['transmission_line'][line])
 plt.title('Transmission Flows on Existing Lines')
@@ -360,7 +360,7 @@ plt.show()
 tx_palette = ['b','m','k','orange','sienna','g','silver','cyan','yellow','red']
 tx_label = []
 for line in range(len(line_names['transmission_line'])):
-    if line_names['max_flow'][line] != 0:
+    if line_names['old'][line] != 0:
         plt.plot(x, line_duals_np[:,line], color=tx_palette[line])
         tx_label.append(line_names['transmission_line'][line])
 plt.ylabel('Congestion Price of Line ($/MW)')

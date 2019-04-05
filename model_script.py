@@ -84,12 +84,15 @@ dispatch_model.rampshutdownlimit = Param(dispatch_model.GENERATORS, dispatch_mod
 dispatch_model.segmentMW = Param(dispatch_model.SEGMENTS, within=NonNegativeReals)
 dispatch_model.segmentprice = Param(dispatch_model.SEGMENTS, within=NonNegativeReals)
 
-#transmission line-dependent params
-dispatch_model.transmission_from = Param(dispatch_model.TRANSMISSION_LINE, within=dispatch_model.ZONES)
-dispatch_model.transmission_to = Param(dispatch_model.TRANSMISSION_LINE, within=dispatch_model.ZONES)
-dispatch_model.transmission_from_capacity = Param(dispatch_model.TRANSMISSION_LINE, within=Reals)
-dispatch_model.transmission_to_capacity = Param(dispatch_model.TRANSMISSION_LINE, within=Reals)
-dispatch_model.line_losses_frac = Param(dispatch_model.TRANSMISSION_LINE, within=PercentFraction)
+#transmission line only depedent params
+dispatch_model.old = Param(dispatch_model.TRANSMISSION_LINE, within=PercentFraction)
+
+#time and transmission line-dependent params
+dispatch_model.transmission_from = Param(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, within=dispatch_model.ZONES)
+dispatch_model.transmission_to = Param(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, within=dispatch_model.ZONES)
+dispatch_model.transmission_from_capacity = Param(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, within=Reals)
+dispatch_model.transmission_to_capacity = Param(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, within=Reals)
+dispatch_model.line_losses_frac = Param(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, within=PercentFraction)
 
 ###########################
 # ######## VARS ######### #
@@ -160,11 +163,11 @@ dispatch_model.CurtailmentConstraint = Constraint(dispatch_model.TIMEPOINTS, dis
 
 #flow rules, simple for now but could eventually include ramp limits or etc.
 def TxFromRule(model, t, line):
-    return (model.transmit_power_MW[t,line] >= model.transmission_from_capacity[line])
+    return (model.transmit_power_MW[t,line] >= model.transmission_from_capacity[t, line])
 dispatch_model.TxFromConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, rule=TxFromRule)
 
 def TxToRule(model, t, line):
-    return (model.transmission_to_capacity[line] >= model.transmit_power_MW[t,line])
+    return (model.transmission_to_capacity[t, line] >= model.transmit_power_MW[t,line])
 dispatch_model.TxToConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.TRANSMISSION_LINE, rule=TxToRule)
 
 
@@ -176,11 +179,11 @@ def LoadRule(model, t, z):
     #implement total tx flow
     imports_exports = 0
     for line in model.TRANSMISSION_LINE:
-        if model.transmission_to[line] == z or model.transmission_from[line] == z:
-            if model.transmission_to[line] == z:
-                imports_exports += model.transmit_power_MW[t, line]*(1-model.line_losses_frac[line])
-            elif model.transmission_from[line] == z:
-                imports_exports -= model.transmit_power_MW[t, line]*(1-model.line_losses_frac[line])
+        if model.transmission_to[t, line] == z or model.transmission_from[t, line] == z:
+            if model.transmission_to[t, line] == z:
+                imports_exports += model.transmit_power_MW[t, line]*(1-model.line_losses_frac[t, line])
+            elif model.transmission_from[t, line] == z:
+                imports_exports -= model.transmit_power_MW[t, line]*(1-model.line_losses_frac[t, line])
     #full constraint, with tx flow now
     return (sum(model.dispatch[t,g,z] for g in model.GENERATORS) + model.windgen[t,z] +\
             model.solargen[t,z] + imports_exports == model.grossload[t,z])
