@@ -20,7 +20,8 @@ import raw_data_imports
 
 start_time = time.time()
 cwd = os.getcwd()
-scenario_name = "TEST2"
+scenario_name = "TEST3" #is Jan 7, whereas test2 was jan 6
+make_init = False
 
 #Directory structure for creation of files
 class DirStructure(object):
@@ -51,6 +52,26 @@ data = raw_data_imports.load_data(os.path.join(dir_str.INPUTS_DIRECTORY), os.pat
 
 
 ## DATA MANIPULATION TO CREATE INPUT FILES ##
+
+def create_gens_init(gens):
+    gens = gens.sort_values('X')
+    gens = gens.set_index('UNITNAME')
+    gen_index = []
+    commit = []
+    up = []
+    down = []
+    for g in list(gens.index):
+        gen_index.append(g)
+        commit.append(0)
+        up.append(0)
+        down.append(100)
+    df = pd.DataFrame(
+    {'Gen_Index': gen_index,
+     'commit_init': commit,
+     'time_up_init': up,
+     'time_down_init': down
+    })
+    return df
 
 def create_zonal_timepoints(zone_df, zone_list, load_df, wind_shape, solar_shape):
     zone_index = []
@@ -189,14 +210,16 @@ def create_hourly_lines(lines, zone_list, load_df_for_timepoints):
 
     return df
 
-def create_zones(zone_df, zone_list):
+def create_zones(zone_df, zone_list, wind, solar):
     zone_index = []
     wind_cap = []
     solar_cap = []
     for z in zone_list:
         zone_index.append(z)
-        wind_cap.append(sum(zone_df.wind_capacity_MW[zone_df.Assigned_Zone==z]))
-        solar_cap.append(sum(zone_df.solar_capacity_MW[zone_df.Assigned_Zone==z]))
+        wind_cap.append(wind.iloc[0][str(z)])
+        solar_cap.append(solar.iloc[0][str(z)])
+        #wind_cap.append(sum(zone_df.wind_capacity_MW[zone_df.Assigned_Zone==z]))
+        #solar_cap.append(sum(zone_df.solar_capacity_MW[zone_df.Assigned_Zone==z]))
     df = pd.DataFrame(
     {'zone': zone_index,
      'wind_cap': wind_cap,
@@ -284,7 +307,7 @@ def create_operating_reserve_curve(n_segments, price_cap):
 
 ## DUMP TO OUTPUT FILES ##
 
-def write_data(data, results_directory):
+def write_data(data, results_directory, init):
     print('writing results to output files...')
     loadMW = data[3]
     
@@ -309,6 +332,9 @@ def write_data(data, results_directory):
     pjm_out.columns = ['Gen_Index',	'Fuel_Cost	','Pmin','start_cost','Can_Spin','Min_Up','Min_Down']
     pjm_out.to_csv(os.path.join(results_directory,"PJM_generators.csv"), index=False)
     
+    if init:
+        out_init = create_gens_init(merged_gens)
+        out_init.to_csv(os.path.join(results_directory,"initialize_generators.csv"), index=False)
     pjm_out_full = merged_gens[['X','UNITNAME','ZONE','ID6_y','RATINGMW_y','marginalcost','can_spin']]
     pjm_out_full = pjm_out_full.sort_values('X')
     pjm_out_full.columns = ['Gen_Index',	'Name', 'Zone',	'Category',	'Capacity',	'Fuel_Cost',	'Can_Spin']
@@ -354,7 +380,7 @@ def write_data(data, results_directory):
         zone_df.to_csv(os.path.join(results_directory,"zones.csv"))
     else:
         #create zones csv
-        zone_df = create_zones(zone_file, zone_list)
+        zone_df = create_zones(zone_file, zone_list, data[9], data[10]) #now adds wind and solar installed data
         zone_df.to_csv(os.path.join(results_directory,"zones.csv"), index=False)
         #create timepoints/zones csv
         timepoints_zonal_df = create_zonal_timepoints(zone_file, zone_list, loadMW, data[5], data[6])
@@ -373,7 +399,7 @@ def write_data(data, results_directory):
     print('...results written')
     return None
 
-write_data(data, dir_str.RESULTS_DIRECTORY)
+write_data(data, dir_str.RESULTS_DIRECTORY, make_init)
 
 #how long?
 end_time = time.time() - start_time

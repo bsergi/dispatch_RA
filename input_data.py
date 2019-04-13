@@ -42,6 +42,12 @@ def scenario_inputs(inputs_directory):
                      model_script.dispatch_model.minup,
                      model_script.dispatch_model.mindown)
               )
+              
+    data.load(filename=os.path.join(inputs_directory, "initialize_generators.csv"),
+              param=(model_script.dispatch_model.commitinit,
+                     model_script.dispatch_model.upinit,
+                     model_script.dispatch_model.downinit)
+              )
 
     data.load(filename=os.path.join(inputs_directory, "PJM_generators_scheduled_outage.csv"),
               param=(model_script.dispatch_model.scheduledavailable)

@@ -32,7 +32,7 @@ dispatch_model = AbstractModel()
 dispatch_model.TIMEPOINTS = Set(domain=PositiveIntegers, ordered=True)
 
 #generators
-dispatch_model.GENERATORS = Set(doc="generators", ordered=True)
+dispatch_model.GENERATORS = Set(ordered=True)
 
 #operating reserve segments
 dispatch_model.SEGMENTS = Set(domain=PositiveIntegers, ordered=True)
@@ -69,6 +69,10 @@ dispatch_model.canspin = Param(dispatch_model.GENERATORS, within=Binary)
 dispatch_model.minup = Param(dispatch_model.GENERATORS, within=NonNegativeIntegers)
 dispatch_model.mindown = Param(dispatch_model.GENERATORS, within=NonNegativeIntegers)
 
+#generator-dependent initialization parameters
+dispatch_model.commitinit = Param(dispatch_model.GENERATORS, within=Binary)
+dispatch_model.upinit = Param(dispatch_model.GENERATORS, within=NonNegativeIntegers)
+dispatch_model.downinit = Param(dispatch_model.GENERATORS, within=NonNegativeIntegers)
 
 #time and zone-dependent params
 dispatch_model.scheduledavailable = Param(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, within=Binary)
@@ -129,15 +133,6 @@ dispatch_model.startup = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATOR
 dispatch_model.shutdown = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
                                within=Binary, initialize=0)
 
-#dispatch_model.commitment = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
-#                                within=NonNegativeReals, bounds=(0,1), initialize=0)
-
-#dispatch_model.startup = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
-#                                within=NonNegativeReals, bounds=(0,1), initialize=0)
-
-#dispatch_model.shutdown = Var(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS,
-#                                within=NonNegativeReals, bounds=(0,1), initialize=0)
-
 ###########################
 # ##### CONSTRAINTS ##### #
 ###########################
@@ -189,14 +184,6 @@ def LoadRule(model, t, z):
             model.solargen[t,z] + imports_exports == model.grossload[t,z])
 dispatch_model.LoadConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.ZONES, rule=LoadRule)
 
-#    imports_exports = 0
-#    for line in model.TRANSMISSION_LINES:
-#        if model.transmission_to[line] == zone or model.transmission_from[line] == zone:
-#            if model.transmission_to[line] == zone:
-#                imports_exports += model.Transmit_Power_MW[line, timepoint]
-#            elif model.transmission_from[line] == zone:
-#                imports_exports -= model.Transmit_Power_MW[line, timepoint]
-
 ## GENERATORS ###
 
 #gen capacity
@@ -230,7 +217,7 @@ dispatch_model.GeneratorRampDownConstraint = Constraint(dispatch_model.TIMEPOINT
 #startups
 def StartUpRule(model,t,g):
     if t==1:
-        return Constraint.Skip
+        return 1-model.commitinit[g] >= model.startup[t,g]
     else:
         return (1-model.commitment[t-1,g] >= model.startup[t,g])
 dispatch_model.StartUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=StartUpRule)
@@ -238,16 +225,16 @@ dispatch_model.StartUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatc
 #shutdowns
 def ShutDownRule(model,t,g):
     if t==1:
-        return Constraint.Skip
+        return model.commitinit[g] >= model.shutdown[t,g]
     else:
         return (model.commitment[t-1,g] >= model.shutdown[t,g])
 dispatch_model.ShutDownConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=ShutDownRule)
 
 #assign shuts and starts
 def AssignStartShutRule(model,t,g):
-    if t==1:
-        return Constraint.Skip
-    else:
+    if t==1: #binds commitment in first hour based on initialization commitment from input (could be last timeperiod of previous run)
+        return model.commitment[t,g] - model.commitinit[g] == model.startup[t,g] - model.shutdown[t,g]
+    else: #general rule
         return (model.commitment[t,g] - model.commitment[t-1,g] == model.startup[t,g] - model.shutdown[t,g])
 dispatch_model.AssignStartShutConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=AssignStartShutRule)
 
@@ -261,24 +248,30 @@ dispatch_model.ScheduledAvailableConstraint = Constraint(dispatch_model.TIMEPOIN
 
 ## GENERATOR MIN UP AND DOWN ##
 
-#min uptime
+#min uptime constraint
 def MinUpRule(model,t,g):
     recent_start_bool = float() #initialize our tracker; boolean because you'll just never see multiple starts
 
-    if t - model.minup[g] <1: #i.e. equals 0
-        return Constraint.Skip
+    if t - model.minup[g] <1: #i.e. in the lookback period to the initialization condition
+        if model.minup[g] >= t+model.upinit[g] and model.commitinit[g]==1: #if generator started online, and hasn't been up long enough
+            return model.commitment[t,g] >= model.commitinit[g]
+        else:
+            return Constraint.Skip
     else: #define subperiod
         for tp in range(1, model.minup[g]+1): #b/c exclusive upper bound!
             recent_start_bool += model.startup[t-tp,g]
         return model.commitment[t,g] >= recent_start_bool
 dispatch_model.MinUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=MinUpRule)
 
-
+#min downtime constraint
 def MinDownRule(model,t,g):
     recent_shut_bool = float()
 
     if t - model.mindown[g] <1: 
-        return Constraint.Skip
+        if model.mindown[g] >= t+model.downinit[g] and model.commitinit[g]==0:
+            return model.commitinit[g] >= model.commitment[t,g]
+        else:
+            return Constraint.Skip
     else:
         for tp in range(1, model.mindown[g]+1):
             recent_shut_bool += model.shutdown[t-tp,g]

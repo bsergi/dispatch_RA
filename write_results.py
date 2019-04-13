@@ -35,7 +35,7 @@ def export_results(instance, results, results_directory, debug_mode):
     # Get sets
     # Sort the sets to return a predictable format of results files
     timepoints_set = sorted(instance.TIMEPOINTS)
-    generators_set = sorted(instance.GENERATORS)
+    generators_set = instance.GENERATORS #don't sort these so order is preserved for future cases
     ordc_segments_set = sorted(instance.SEGMENTS)
     zones_set = sorted(instance.ZONES)
     transmission_lines_set = sorted(instance.TRANSMISSION_LINE)
@@ -175,22 +175,41 @@ def export_lines(instance, timepoints_set, transmission_lines_set, results_direc
 
 def export_generator_commits_reserves(instance, timepoints_set, generators_set, results_directory):
     
+    results_gens = []
+    results_time = []
     results_commitment = []
     results_starts = []
     results_shuts = []
+    results_hourson = []
+    results_hoursoff = []
     results_spinreserves = []
     index_name = []
     for g in generators_set:
         for t in timepoints_set:
             index_name.append(str(g)+","+str(t))
+            results_gens.append(g)
+            results_time.append(t)
             results_commitment.append(instance.commitment[t,g].value)
             results_starts.append(instance.startup[t,g].value)
             results_shuts.append(instance.shutdown[t,g].value)
+            
+            if t==1 and instance.commitinit[g]==instance.commitment[t,g].value:
+                results_hourson.append(instance.commitinit[g] * instance.upinit[g] + instance.commitment[t,g].value)
+                results_hoursoff.append((1-instance.commitinit[g]) * instance.downinit[g] + (1-instance.commitment[t,g].value))
+            elif instance.startup[t,g].value==1 or instance.shutdown[t,g].value==1:
+                results_hourson.append(instance.commitment[t,g].value)
+                results_hoursoff.append((1-instance.commitment[t,g].value))
+            else:
+                results_hourson.append(results_hourson[-1]+instance.commitment[t,g].value)
+                results_hoursoff.append(results_hoursoff[-1]+(1-instance.commitment[t,g].value))
+                
             results_spinreserves.append(format_2f(instance.spinreserves[t,g].value))
-    col_names = ['Committed?','Started?','Shut?','Held as Reserves (MW)']
-    df = pd.DataFrame(data=np.column_stack((np.asarray(results_commitment),np.asarray(results_starts),np.asarray(results_shuts),np.asarray(results_spinreserves))),
+    col_names = ['Gen_Index','timepoint','Committed','Started','Shut','TimeOn','TimeOff','Held as Reserves (MW)']
+    df = pd.DataFrame(data=np.column_stack((np.asarray(results_gens), np.asarray(results_time), np.asarray(results_commitment),
+                                            np.asarray(results_starts), np.asarray(results_shuts),np.asarray(results_hourson),
+                                            np.asarray(results_hoursoff), np.asarray(results_spinreserves))),
                       columns=col_names,index=pd.Index(index_name))
-    df.to_csv(os.path.join(results_directory,"generator_commits_reserves.csv"))
+    df.to_csv(os.path.join(results_directory,"generator_commits_reserves.csv"), index=False)
     
 def export_reserve_segment_commits(instance, timepoints_set, ordc_segments_set, results_directory):
     

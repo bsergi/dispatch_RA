@@ -37,6 +37,10 @@ def load_data(inputs_directory, scenario_inputs_directory):
     #load wind/solar shape
     wind_solar = pd.read_csv(os.path.join(inputs_directory,"wind_solar_hour_shape.csv"))
     
+    #load wind/solar zonal capacity
+    wind_capacity_df = pd.read_excel(open(os.path.join(inputs_directory,'EIA_860_2017_Wind.xlsx'), 'rb'),sheet_name='for_tool')
+    solar_capacity_df = pd.read_excel(open(os.path.join(inputs_directory,'EIA_860_2017_Solar.xlsx'), 'rb'),sheet_name='for_tool')
+    
     #load generator dependent stuff
     try:
         temperature_matches = pd.read_pickle(".PJM.temperature.series.forward.interp.64.WBANs.052718")
@@ -62,6 +66,10 @@ def load_data(inputs_directory, scenario_inputs_directory):
     #clean wind and solar data
     wind = vre_time_clean("wind", wind_solar, startdate, enddate)
     solar = vre_time_clean("solar", wind_solar, startdate, enddate)
+    
+    #clean wind and solar capacities to get the appropriate level for that month
+    wind_capacity = vre_capacity_time_clean("wind", wind_capacity_df, startdate, enddate)
+    solar_capacity = vre_capacity_time_clean("solar", solar_capacity_df, startdate, enddate)
     
     #clean temperatures
     temperatures = temperature_time_clean(temperature_matches, startdate, enddate)
@@ -100,7 +108,8 @@ def load_data(inputs_directory, scenario_inputs_directory):
     loadMW = loads_time_clean(loads, startdate, enddate)
     
     print('...return loaded and cleaned data')
-    return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1], clean_line_limits)
+    return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1], 
+            clean_line_limits, wind_capacity, solar_capacity)
 
 def str_to_datetime(my_str):
     '''
@@ -145,7 +154,21 @@ def vre_time_clean(vre_type, vre_df, startdate, enddate):
     else:
         print('you can only return solar or wind data, this is a problem!!')
         return None
-
+    
+def vre_capacity_time_clean(vre_type, vre_df, startdate, enddate):
+    '''
+    very similar to vre_time_clean, but handles the input capacities rather than the input hourly shapes
+    '''
+    if vre_type == "solar":
+        vre_df = vre_df[(vre_df.Equiv_End_Date.apply(str_to_datetime) >= startdate) & (enddate >= vre_df.Equiv_Begin_Date.apply(str_to_datetime))]
+        return vre_df
+    elif vre_type == "wind":
+        vre_df = vre_df[(vre_df.Equiv_End_Date.apply(str_to_datetime) >= startdate) & (enddate >= vre_df.Equiv_Begin_Date.apply(str_to_datetime))]
+        return vre_df
+    else:
+        print('you need to say whether this is wind or solar data. You input something else. Problem!')
+        return None
+    
 def loads_time_clean(loads, startdate, enddate):
     '''
     takes df of loads, subsets those from the time period
