@@ -8,3 +8,5 @@ Zones,TRUE
 Demand Curve Segments,10
 VOLL,"$3,500 "
 Contingency Reserve Shed,$850 
+lowcutLOLP,0.00001
+hydro_cf,0.5
