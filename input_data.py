@@ -60,6 +60,7 @@ def scenario_inputs(inputs_directory):
                      model_script.dispatch_model.rampshutdownlimit)
               )
 
+    #this is effectively defunct and used only for loading the index
     data.load(filename=os.path.join(inputs_directory, "operating_reserve_segments.csv"),
               index=model_script.dispatch_model.SEGMENTS,
               param=(model_script.dispatch_model.segmentMW,
@@ -70,6 +71,11 @@ def scenario_inputs(inputs_directory):
               index=model_script.dispatch_model.TIMEPOINTS,
               param=(model_script.dispatch_model.temperature)
               )
+    
+    data.load(filename=os.path.join(inputs_directory, "full_ordc.csv"),
+              param=(model_script.dispatch_model.MW,
+                     model_script.dispatch_model.price)
+              )    
 
     data.load(filename=os.path.join(inputs_directory, "zones.csv"),
               index=model_script.dispatch_model.ZONES,

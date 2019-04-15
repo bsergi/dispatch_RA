@@ -42,7 +42,9 @@ cwd = os.getcwd()
 #load_dir = "TEST2"  
 
 ## CREATE LINKED SCENARIO OVER MULTIPLE DAYS ##
-scenario_tuples = (("TEST2",False,"TEST2"),("TEST3",True,"TEST2")) 
+#enter this as a list of tuples
+scenario_list = [("1.6.2014",False,""),("1.7.2014",True,"1.6.2014")] 
+#scenario_list = [("TOY", False, "")]
 
 #Directory structure, using existing files rather than creating case structure for now
 class DirStructure(object):
@@ -234,10 +236,9 @@ def run_scenario(directory_structure, load_init):
             results_shuts, price_duals, reserve_duals, results_spinreserves, len(zone_stamp),\
             transmission_duals,results_transmission_line_flow)
 
-#THIS SHOULD BE KEPT
-#run model
+### RUN MODEL ###
 count_case = 0
-for s in scenario_tuples:
+for s in scenario_list:
     count_case+=1
     #initialize scenario data in the tuple
     scenario_name = s[0] #for now
@@ -250,7 +251,7 @@ for s in scenario_tuples:
     dir_str.make_directories()
     logger = Logger(dir_str)
     log_file = logger.log_file_path
-    print("Running scenario " + str(count_case) + " of " + str(len(scenario_tuples)) + "...")
+    print("Running scenario " + str(count_case) + " of " + str(len(scenario_list)) + "...")
     print ("Running scenario " + str(scenario_name) + "...")
     stdout = sys.stdout
     sys.stdout = logger
@@ -258,7 +259,7 @@ for s in scenario_tuples:
     scenario_results = run_scenario(dir_str, load_init)
     
     sys.stdout = stdout #return to original
-    #END WHAT SHOULD BE KEPT
+### END RUN MODEL ###
     
     #PLOTS ONLY
     #plot some basic results with matplotlib

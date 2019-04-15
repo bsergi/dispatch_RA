@@ -13,9 +13,9 @@ import numpy as np
 def create_init_file(from_directory, to_directory, hour):
     '''
     takes a results directory from a previous case, and reads 
-    (1) the commitment, 
-    (2) the # hours online (if committed)
-    (3) the # hours offline (if not committed)
+    (1) the commitment (1/0 binary), 
+    (2) the # hours online (integer, if committed)
+    (3) the # hours offline (integer, if not committed)
     for each generator, and outputs them to a csv for the current case so that it knows how generators were dispatched
     in the most recent previous hour
     '''

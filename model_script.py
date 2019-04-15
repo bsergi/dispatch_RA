@@ -85,8 +85,13 @@ dispatch_model.rampshutdownlimit = Param(dispatch_model.GENERATORS, dispatch_mod
 
 
 #reserve segment-dependent params
+### THESE ARE NO LONGER USED IN THE MODEL AS OF 4.14.19 ###
 dispatch_model.segmentMW = Param(dispatch_model.SEGMENTS, within=NonNegativeReals)
 dispatch_model.segmentprice = Param(dispatch_model.SEGMENTS, within=NonNegativeReals)
+
+#reserve segment *and* timepoint dependent params
+dispatch_model.MW = Param(dispatch_model.TIMEPOINTS, dispatch_model.SEGMENTS, within=NonNegativeReals)
+dispatch_model.price = Param(dispatch_model.TIMEPOINTS, dispatch_model.SEGMENTS, within=NonNegativeReals)
 
 #transmission line only depedent params
 dispatch_model.old = Param(dispatch_model.TRANSMISSION_LINE, within=PercentFraction)
@@ -291,7 +296,7 @@ def TotalSpinUpReserveRule(model,t):
 dispatch_model.TotalSpinUpReserveConstraint = Constraint(dispatch_model.TIMEPOINTS, rule=TotalSpinUpReserveRule)
 
 def SegmentReserveRule(model,t,s):
-    return model.segmentMW[s] >= model.segmentreserves[t,s]
+    return model.MW[t,s] >= model.segmentreserves[t,s]
 dispatch_model.SegmentReserveConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.SEGMENTS, rule=SegmentReserveRule)
 
 ###########################
@@ -301,7 +306,7 @@ dispatch_model.SegmentReserveConstraint = Constraint(dispatch_model.TIMEPOINTS, 
 def objective_rule(model): 
     return(sum(sum(sum(model.dispatch[t,g,z] for z in model.ZONES) for t in model.TIMEPOINTS)*model.fuelcost[g] for g in model.GENERATORS) +\
            sum(sum(model.startup[t,g] for t in model.TIMEPOINTS)*model.startcost[g] for g in model.GENERATORS) -\
-           sum(sum(model.segmentprice[s]*model.segmentreserves[t,s] for s in model.SEGMENTS) for t in model.TIMEPOINTS)) #min dispatch cost for objective
+           sum(sum(model.price[t,s]*model.segmentreserves[t,s] for s in model.SEGMENTS) for t in model.TIMEPOINTS)) #min dispatch cost for objective
     
 dispatch_model.TotalCost = Objective(rule=objective_rule, sense=minimize)
 
