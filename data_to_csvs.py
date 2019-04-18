@@ -196,13 +196,19 @@ def create_zones(zone_df, zone_list, wind, solar):
     
     return df
 
-def knit_generator_zone(gens, zones):
+def knit_generator_zone(gens, zones, hydro_df):
     '''
     takes list of zones, and df of generators, and knits together to get the capacity of 
     each generator in a zone
+    modifies capacity of hydro resources according to their monthly CF (a bit clunky for now)
     for now, format is for capacity to be 0 in zones where generator doesn't exist
     '''
     gens = gens.sort_values('X')
+    
+    hydro_df['UTILUNIT_y']=hydro_df['UTILUNIT']
+    gens_w_hydro = pd.merge(gens,hydro_df,on="UTILUNIT_y")
+    gens_w_hydro = gens_w_hydro.set_index('UNITNAME')
+    cap_factor = gens_w_hydro.NETACTGEN/(gens_w_hydro.RATINGMW_y*744) #assumes 744 hours in month for calculating CF
     gens = gens.set_index('UNITNAME')
     gen_index = []
     zone_index = []
@@ -212,10 +218,14 @@ def knit_generator_zone(gens, zones):
     ramp_shut = []
     for z in zones:
         for g in list(gens.index):
+            try:
+                cf = cap_factor[g]
+            except KeyError:
+                cf = 1
             gen_index.append(g)
             zone_index.append(z)
             if z == gens.Assigned_Zone[g]:
-                gen_zone_cap.append(gens.RATINGMW_y[g])
+                gen_zone_cap.append(max(0,gens.RATINGMW_y[g]*cf))
             else:
                 gen_zone_cap.append(0)
             ramp_rate.append(gens.RATINGMW_y[g]*.2)
@@ -231,20 +241,24 @@ def knit_generator_zone(gens, zones):
     })
     return df
 
-def create_scheduled_outage_file(n_timepoints, list_gens):
+def create_scheduled_outage_file(n_timepoints, list_gens, unitmatch_ID, outage_schedule):
     '''
     takes a number of timepoints, and a list of the generators, and creates an outage schedule
-    is all ones (online) for now, but could change in the future.
-    Easy way to to change would be to pass dataframe of the time/generator scheduled outage pairs, then set those to 0
+    also takes in data on which units have scheduled outages
     '''
     time_list = []
     gens_list = []
     scheduled_list = []
     for t in range(1,n_timepoints+1):
         for g in list_gens:
+            match_ID = unitmatch_ID[g]
+            try:
+                scheduled_out = outage_schedule.iloc[t-1][match_ID]
+            except (KeyError, TypeError) as e: #this is for when the ID doesn't work
+                scheduled_out = 0
             time_list.append(t)
             gens_list.append(g)
-            scheduled_list.append(1) #all ones for now, but could rewrite if want to pass scheduled outages
+            scheduled_list.append(1-scheduled_out)
     df = pd.DataFrame(
     {'timepoint': time_list,
      'Gen_Index': gens_list,
@@ -320,13 +334,15 @@ def write_data(data, results_directory, init, scenario_inputs_directory):
         zone_list = new_zone_list
     gens_w_zone = pd.merge(merged_gens, zone_file, on='ZONE')
     gens_w_zone = gens_w_zone.sort_values('X')
-    pjm_gens_zones = knit_generator_zone(gens_w_zone, zone_list)
+    hydro_df = data[12]
+    pjm_gens_zones = knit_generator_zone(gens_w_zone, zone_list, hydro_df)
     pjm_gens_zones.to_csv(os.path.join(results_directory,"PJM_generators_zone.csv"), index=False)
     
     #write scheduled outage file
     merged_gens_reindex = merged_gens.sort_values('X')
     merged_gens_reindex = merged_gens_reindex.set_index('UNITNAME')
-    scheduled_outage_df = create_scheduled_outage_file(loadMW.shape[0],list(merged_gens_reindex.index))
+    outage_schedule = data[11]
+    scheduled_outage_df = create_scheduled_outage_file(loadMW.shape[0],list(merged_gens_reindex.index), merged_gens_reindex.UTILUNIT_y, outage_schedule)
     scheduled_outage_df.to_csv(os.path.join(results_directory,'PJM_generators_scheduled_outage.csv'), index=False)
     
     #write operating reserve file

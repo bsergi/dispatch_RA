@@ -43,7 +43,7 @@ cwd = os.getcwd()
 
 ## CREATE LINKED SCENARIO OVER MULTIPLE DAYS ##
 #enter this as a list of tuples
-scenario_list = [("1.6.2014",False,""),("1.7.2014",True,"1.6.2014")] 
+scenario_list = [("1.4.2014",False,"")] 
 #scenario_list = [("TOY", False, "")]
 
 #Directory structure, using existing files rather than creating case structure for now

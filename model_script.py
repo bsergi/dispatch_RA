@@ -75,7 +75,7 @@ dispatch_model.upinit = Param(dispatch_model.GENERATORS, within=NonNegativeInteg
 dispatch_model.downinit = Param(dispatch_model.GENERATORS, within=NonNegativeIntegers)
 
 #time and zone-dependent params
-dispatch_model.scheduledavailable = Param(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, within=Binary)
+dispatch_model.scheduledavailable = Param(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, within=PercentFraction)
 
 #generator and zone-dependent params
 dispatch_model.capacity = Param(dispatch_model.GENERATORS, dispatch_model.ZONES, within=NonNegativeReals)
@@ -191,9 +191,9 @@ dispatch_model.LoadConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_m
 
 ## GENERATORS ###
 
-#gen capacity
+#gen capacity with scheduled outage factored in
 def CapacityMaxRule(model, t, g, z):
-    return (model.capacity[g,z]*model.commitment[t,g] >= model.dispatch[t,g,z])
+    return (model.capacity[g,z]*model.commitment[t,g]*model.scheduledavailable[t,g] >= model.dispatch[t,g,z])
 dispatch_model.CapacityMaxConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, dispatch_model.ZONES, rule=CapacityMaxRule)
 
 #pmin

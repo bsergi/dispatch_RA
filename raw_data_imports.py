@@ -50,6 +50,12 @@ def load_data(inputs_directory, scenario_inputs_directory):
     units = pd.read_csv(os.path.join(inputs_directory,"PJM.units.processed.071818.csv"))
     units_zonal_match = pd.read_csv(os.path.join(inputs_directory,"GENERATORS_LL.csv"))
     
+    #load generator scheduled outages
+    scheduled_outages = pd.read_csv(os.path.join(inputs_directory,"fraction.unavailable.Jan14.csv"), index_col=0)
+    
+    #load hydro derates
+    hydro_derates = pd.read_csv(os.path.join(inputs_directory,"PJM.hydro.gen.jan.2014.csv"))
+    
     #load line flow data
     line_limits = pd.read_csv(os.path.join(inputs_directory,"da_interface_flows_and_limits_full.csv"))
     
@@ -59,6 +65,9 @@ def load_data(inputs_directory, scenario_inputs_directory):
     #create cleaning dates
     startdate = parser.parse(base_inputs.loc['Begin Date']['value'])
     enddate = startdate + timedelta(days=int(base_inputs.loc['Duration']['value']), hours=-1)
+    
+    #clean scheduled generator outages
+    clean_scheduled_outages = scheduled_outage_clean(scheduled_outages, startdate, enddate)
     
     #clean line flow limits
     clean_line_limits = line_clean(line_limits, startdate, enddate)
@@ -109,7 +118,7 @@ def load_data(inputs_directory, scenario_inputs_directory):
     
     print('...return loaded and cleaned data')
     return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1], 
-            clean_line_limits, wind_capacity, solar_capacity)
+            clean_line_limits, wind_capacity, solar_capacity, clean_scheduled_outages, hydro_derates)
 
 def str_to_datetime(my_str):
     '''
@@ -123,6 +132,14 @@ def str_to_datetime(my_str):
 def generator_module(units, zones):
     unit_zone = pd.merge(units, zones, on='X', how='outer')
     return unit_zone
+
+def scheduled_outage_clean(outage_df, startdate, enddate):
+    '''
+    takes df of scheduled outage by unit, cleans to include only active timeperiod for case
+    '''
+    scheduled_outage_output = outage_df
+    scheduled_outage_output['date']=scheduled_outage_output.index
+    return scheduled_outage_output[(scheduled_outage_output.date.apply(str_to_datetime) >= startdate) & (enddate >= scheduled_outage_output.date.apply(str_to_datetime))]
 
 def line_clean(lines, startdate, enddate):
     '''
