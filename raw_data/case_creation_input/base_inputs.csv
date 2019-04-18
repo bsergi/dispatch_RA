@@ -1,5 +1,5 @@
 base inputs,value
-Begin Date,1/7/2014
+Begin Date,1/4/2014
 Duration,1
 Wind forecast error,1%
 Solar forecast error,1%
@@ -9,4 +9,4 @@ Demand Curve Segments,10
 VOLL,"$3,500 "
 Contingency Reserve Shed,$850 
 lowcutLOLP,0.00001
-hydro_cf,0.5
+hydro_cf,0.3

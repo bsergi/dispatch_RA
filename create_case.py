@@ -25,7 +25,7 @@ start_time = time.time()
 cwd = os.getcwd()
 
 #scenario_name = "TEST2" cases are now named below based on their corresponding date
-make_init = False
+make_init = True
 create_supp_ordc = True #this really should always be true so may get rid of it later
 
 #Directory structure for creation of files
