@@ -289,7 +289,7 @@ def create_operating_reserve_curve(n_segments, price_cap):
 
 ## DUMP TO OUTPUT FILES ##
 
-def write_data(data, results_directory, init, scenario_inputs_directory):
+def write_data(data, results_directory, init, scenario_inputs_directory, date, inputs_directory):
     print('writing results to output files...')
     loadMW = data[3]
     
@@ -308,6 +308,22 @@ def write_data(data, results_directory, init, scenario_inputs_directory):
     gen_types = pd.read_csv(os.path.join(scenario_inputs_directory,"gentype_inputs.csv"))
     merged_gens = pd.merge(gens, gen_types, on='ID6_y')
     merged_gens['startcost'] = merged_gens.start_scalar * merged_gens.RATINGMW_y
+    
+    # overwrite single gas price with henry hub values
+    hubPrice = pd.read_excel(os.path.join(inputs_directory,"gas_price_pull.xlsx"))
+    
+    # subset to henry hub (for now) and downselect date
+    price = hubPrice.loc[(hubPrice['Price Hub'] == "Henry") & (hubPrice['Delivery Date'] == pd.to_datetime(date))]
+    price = price['Wtd Avg Index $'].iloc[0]
+    
+    # add delivery charge ( $ per mmBtu)
+    delivery = 0.4
+    price = price + delivery
+    
+    # replace gas generators fuel cost with hub price
+    merged_gens.loc[merged_gens['ID6_y'].isin(['CC', 'CT']) , 'FuelCost'] = price
+    
+    # using fuel cost and heat rate to calculate marginal costs
     merged_gens['marginalcost'] = merged_gens.FuelCost * merged_gens.GEN_HEATRATE
     merged_gens = merged_gens.sort_values('X')
     pjm_out = merged_gens[['UNITNAME','marginalcost','Pmin','startcost','can_spin','minup','mindown']]
@@ -347,7 +363,7 @@ def write_data(data, results_directory, init, scenario_inputs_directory):
     
     #write operating reserve file
     segment_int = int(data[0].value[6])
-    cost_int = int(data[0].value[8].strip('$'))
+    cost_int = data[0].value[8]
     operating_reserve_df = create_operating_reserve_curve(segment_int,cost_int)
     operating_reserve_df.to_csv(os.path.join(results_directory,'operating_reserve_segments.csv'), index=False)
     
@@ -358,7 +374,7 @@ def write_data(data, results_directory, init, scenario_inputs_directory):
     temperatures = temperatures.iloc[:, ::-1]
     temperatures.to_csv(os.path.join(results_directory,"timepoints_index.csv"),index=False)    
     
-    if data[0].value[5] == "FALSE":
+    if not data[0].value[5]:
         loadMW.to_csv(os.path.join(results_directory,"timepoints_zonal.csv"))
         zone_df = pd.DataFrame([["PJM", 15, 14]], columns = ['zone', 'wind_cap','solar_cap']) 
         zone_df.to_csv(os.path.join(results_directory,"zones.csv"))

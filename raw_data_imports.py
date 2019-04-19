@@ -14,10 +14,11 @@ from datetime import datetime
 from datetime import timedelta
 from dateutil import parser
 
-def load_data(inputs_directory, scenario_inputs_directory):
+from case_inputs import *
+
+def load_data(inputs_directory, scenario_inputs_directory, date):
     print('begin loading data...')
     #load base data; this is not pickled so it's always re-loaded by case
-    base_inputs = pd.read_csv(os.path.join(scenario_inputs_directory,"base_inputs.csv"),index_col=0)
     
     #load other stuff
     #this stuff is loaded from pickles for speed, but be careful if you edit the underlying file
@@ -61,10 +62,9 @@ def load_data(inputs_directory, scenario_inputs_directory):
     
     print('end loading data, begin cleaning data...')
     
-    
     #create cleaning dates
-    startdate = parser.parse(base_inputs.loc['Begin Date']['value'])
-    enddate = startdate + timedelta(days=int(base_inputs.loc['Duration']['value']), hours=-1)
+    startdate = parser.parse(date)
+    enddate = startdate + timedelta(days, hours=-1)
     
     #clean scheduled generator outages
     clean_scheduled_outages = scheduled_outage_clean(scheduled_outages, startdate, enddate)
@@ -88,8 +88,8 @@ def load_data(inputs_directory, scenario_inputs_directory):
     gens = gens_time_clean(gens, startdate, enddate)
     
     #add dr
-    cost_string = base_inputs.value[7].strip('$')
-    DR_cost =  int(cost_string.replace(',','')) #cost of DR is set to the VOLL by default
+    DR_cost = VOLL   #cost of DR is set to the VOLL by default
+
     listOfSeries = [pd.Series([1846,(max(gens.X)+1),1,1,1,'DR1','DR1','NA','NA','NA','NA','NA','NA','NA','NA'
           ,'NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA','NA'
           ,'NA','NA','NA','NA','NA','NA','1/1/1980','NA','NA','NA','NA','NA','NA','NA','NA','NA','DR'
@@ -115,6 +115,11 @@ def load_data(inputs_directory, scenario_inputs_directory):
     #clean loads
     #this is the part that's taking the longest, so work on it at some point
     loadMW = loads_time_clean(loads, startdate, enddate)
+    
+    # summarize base_inputs for use later (note: could simplify now that inputs are via script in case_inputs.py)
+    base_inputs = pd.DataFrame({"value":[date, days, wfe, sfe, lfe, zones, n_segments, VOLL, contingency, lowcutLOLP, hydro_cf]},
+                               index= ["Begin Date", "Duration", "Wind forecast error", "Solar forecast error", "Load forecast error",
+                                       "Zones", "Demand Curve Segments", "VOLL", "Contingency Reserve Shed", "lowcutLOLP", "hydrocf"])
     
     print('...return loaded and cleaned data')
     return (base_inputs, forced_outage_rates, gens, loadMW[0], temperatures, wind, solar, loadMW[1], 

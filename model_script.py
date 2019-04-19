@@ -256,6 +256,10 @@ dispatch_model.ScheduledAvailableConstraint = Constraint(dispatch_model.TIMEPOIN
 #min uptime constraint
 def MinUpRule(model,t,g):
     recent_start_bool = float() #initialize our tracker; boolean because you'll just never see multiple starts
+    
+    #allow minup to be overruled if generator is scheduled not available
+    if model.scheduledavailable[t,g] == 0:
+        return Constraint.Skip
 
     if t - model.minup[g] <1: #i.e. in the lookback period to the initialization condition
         if model.minup[g] >= t+model.upinit[g] and model.commitinit[g]==1: #if generator started online, and hasn't been up long enough
@@ -266,7 +270,7 @@ def MinUpRule(model,t,g):
         for tp in range(1, model.minup[g]+1): #b/c exclusive upper bound!
             recent_start_bool += model.startup[t-tp,g]
         return model.commitment[t,g] >= recent_start_bool
-dispatch_model.MinUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=MinUpRule)
+# dispatch_model.MinUpConstraint = Constraint(dispatch_model.TIMEPOINTS, dispatch_model.GENERATORS, rule=MinUpRule)
 
 #min downtime constraint
 def MinDownRule(model,t,g):

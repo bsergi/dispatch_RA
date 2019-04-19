@@ -74,7 +74,13 @@ def export_results(instance, results, results_directory, debug_mode):
     except Exception as err:
         msg = "ERROR exporting reserve segments! Check export_reserve_segment_commits()."
         handle_exception(msg, debug_mode)
-    
+
+    try:
+        export_VREs(instance, results_directory)
+    except Exception as err:
+        msg = "ERROR exporting VRE results! Check export_VREs()."
+        handle_exception(msg, debug_mode)
+        
     #return call
     return None
 
@@ -149,11 +155,14 @@ def export_zonal_price(instance, timepoints_set, zones_set, results_directory):
     
     results_prices = []
     index_name = []
+    timepoints_list = []
     for z in zones_set:
         for t in timepoints_set:
-            index_name.append(z+"-"+str(t))
+            index_name.append(z)
             results_prices.append(format_2f(instance.dual[instance.LoadConstraint[t,z]]))
-    df = pd.DataFrame(np.asarray(results_prices),index=pd.Index(index_name))
+            timepoints_list.append(t)
+    df = pd.DataFrame({'hour': timepoints_list, 'LMP':np.asarray(results_prices)},
+                       index=pd.Index(index_name))
     df.to_csv(os.path.join(results_directory,"zonal_prices.csv"))
     
 def export_lines(instance, timepoints_set, transmission_lines_set, results_directory):
@@ -222,3 +231,22 @@ def export_reserve_segment_commits(instance, timepoints_set, ordc_segments_set, 
     col_names = ['MW on reserve segment']
     df = pd.DataFrame(data=(np.asarray(results_segments)),columns=col_names,index=pd.Index(index_name))
     df.to_csv(os.path.join(results_directory,"reserve_segment_commit.csv"))
+    
+def export_VREs(instance, results_directory):
+    
+    results_wind = []
+    results_solar = []
+    results_curtailment = []
+    tmps = []
+    zones = []
+    
+    for t in instance.TIMEPOINTS:
+        for z in instance.ZONES:
+            tmps.append(t)
+            zones.append(z)
+            results_wind.append(instance.windgen[t,z].value)
+            results_solar.append(instance.solargen[t,z].value)
+            results_curtailment.append(instance.curtailment[t,z].value)
+            
+    VRE = pd.DataFrame({"timepoint": tmps, "zone": zones, "wind":results_wind, "solar": results_solar, "curtailment":results_curtailment})
+    VRE.to_csv(os.path.join(results_directory,"renewable_generation.csv"), index=False)
